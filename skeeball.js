@@ -1,26 +1,36 @@
 //https://glitch.com/edit/#!/cas-skeeball?path=script.js%3A4%3A0
 
 /* global
-createCanvas, background, beginShape, endShape, vertex, rect, fill, strokeWeight, image, loadImage
+createCanvas, background, beginShape, endShape, vertex, rect, fill, strokeWeight, image, loadImage, ellipse, mouseX, mouseY
 */
 
 let xCan = 500;
 let yCan = 800;
 
-let arrow;
+let arrow, currentBall, can;
 
 function preload(){
   arrow = loadImage("https://cdn.glitch.com/9ffc4761-79d4-40de-97ac-089782a08e10%2Fbright-arrow.png?v=1595624276573");
 }
 
 function setup(){
-  createCanvas(xCan, yCan);
+  can = createCanvas(xCan, yCan);
+  
+  currentBall = new ball();
 }
 
 function draw(){
   background(51);
   buildMachine();
   image(arrow, xCan/2.8, yCan/2);
+  currentBall.drawBall();
+}
+
+function mouseMoved(can){
+  let x = mouseX;
+  if(x>xCan/5 && x<4*xCan/5) currentBall.x = mouseX;
+  else if(x<=xCan/5) currentBall.x = xCan/5;
+  else currentBall.x = 4*xCan/5;
 }
 
 function buildMachine(){
@@ -65,6 +75,15 @@ function quad(x, y, x1, y1, x2, y2, x3, y3){
   endShape();
 }
 
-function hole(x, y){
-  
+class ball {
+  constructor(){
+    this.w = xCan/20 + (yCan-xCan/20)/30;
+    this.x = xCan/2;
+    this.y = yCan - 1.5*this.w;
+  }
+
+  drawBall(){
+    fill(255);
+    ellipse(this.x, this.y, (xCan/20) + this.y/30);
+  }
 }
