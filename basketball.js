@@ -37,7 +37,7 @@ let xBoard, yBoard
 let mouseX, mouseY
 
 function setup() {
-  createCanvas(400, 400); //600 x 400 pixels
+  createCanvas(600, 600); //600 x 400 pixels
   
   // Starting position of the ball
   xPosition = 50;
