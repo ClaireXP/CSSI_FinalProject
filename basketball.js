@@ -85,8 +85,8 @@ function setup() {
 function draw() {
   textAlign(CENTER)
   background(220);
-  fill(210,180,140) // This is color of rect below
-  rect(0, 200, 600, 200) // (x, y, width, height)
+  fill(249,200,82) 
+  rect(0, 200, 600, 200) 
 
   fill(0)
   textSize(20)
@@ -98,13 +98,13 @@ function draw() {
   
     
   
-  //fill(205,250,135) // This is color of rect below
-  //rect(175, 25, 250, 25)
+  fill(205,250,135) // This is color of rect below
+  rect(175, 25, 250, 25)
   
-  //fill(205,250,135) // This is color of rect below
-  //rect(200, 0, 200, 25)
+  fill(205,250,135) // This is color of rect below
+  rect(200, 0, 200, 25)
   
-  // Hoop is an ellipse and some lines for the net
+  // Hoop is an ellipse and the basket is made with the lines  lines for the net
   noFill()
   stroke(0);
   strokeWeight(4);
@@ -114,12 +114,8 @@ function draw() {
   fill(0,0,0)
   quad(xHoop + radius*3/2 - radius/5, yHoop-radius/5, xHoop + radius*3/2 + radius*0.75 - radius/5, yHoop + radius/5, xHoop + radius*3/2 + radius*0.75 - radius/5, yHoop - radius*3 + radius/5, xHoop + radius*3/2 - radius/5, yHoop - radius*3 - radius/5)
   line(xHoop + radius*3/2 + radius/10, yHoop, xHoop + radius*3/2 + radius/10,yPosition+radius)
-  //rect(xHoop + radius*3/2,yHoop-radius*3, radius*0.75, radius*3)
   noFill()
-  //circle(440,100,5)
   stroke(255)
-  // line(440,100, 540,200)
-  // line(560, 100, 460, 200)
   stroke(0)
   
   strokeWeight(1);
@@ -141,14 +137,6 @@ function draw() {
   
   xBoard = xHoop + radius*3/2
   yBoard = yHoop - radius*3
-  
-  //console.log(x)
-  // Standard Form
-  // y = a*x^2 + b*x + c
-  // y = a*x*x + b*x + c
-  
-  // Vertex Form
-  // y = a*(x-h)*(x-h) + k
   
   if (shot == 1){
     ySpeed = ySpeed - g;
@@ -214,9 +202,9 @@ function draw() {
     textSize(64);
     fill(0)
     strokeWeight(3)
-    stroke(255, 0, 0)
+    stroke(100, 200, 0)
     textAlign(CENTER)
-    text("Brick!", 300, yPosition)
+    text("Basket!", 300, yPosition)
     noFill()
   }
   
@@ -236,7 +224,7 @@ function draw() {
     strokeWeight(3)
     stroke(255, 0, 0)
     textAlign(CENTER)
-    text("robbed...", 300, yPosition)
+    text("so close...", 300, yPosition)
     noFill()
   }
   
@@ -262,11 +250,11 @@ function draw() {
   }
   
   
-  // Draw the circle last!!!
+  
   fill(230,105,0)
   stroke(0)
   strokeWeight(1)
-  circle(x, y, radius*2)  // Draws a circle at (x,y,radius)
+  circle(x, y, radius*2)  
   noFill()
   if (shotMade == 1){
     if (scoreCount == 0){
@@ -302,16 +290,16 @@ function draw() {
           endText = "On Fire!"
         }
         if (streak == 3){
-          endText = "Respect..."
+          endText = "Respect"
         }
         if (streak == 4){
-          endText = "Wet!"
+          endText = "!!!!!"
         }
         if (streak == 5){
           endText = "Maybe pass sometimes"
         }
         if (streak == 6){
-          endText = "LeBron is that you!?"
+          endText = "Keep up the good work?"
         }
         if (streak == 7){
           endText = "You're a wizard Harry!"
@@ -323,13 +311,13 @@ function draw() {
           endText = "STOP. DROP. ROLL."
         }
         if (streak == 10){
-          endText = "Jesus is that you!?"
+          endText = "Are you a professional?"
         }
         if (streak == 11){
-          endText = "U go hard in paint"
+          endText = "As good as Lebron"
         }
         if (streak > 11){
-          endText = "LEGEND STATUS!"
+          endText = "PRO!"
         }
         streak += 1;
       }
