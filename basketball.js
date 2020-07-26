@@ -407,6 +407,7 @@ function mouseReleased() {
     xSpeed = -g*5*(mouseX - xPosition)/30;
     ySpeed = -g*5*(mouseY - yPosition)/30;
     mouseJustPressed = 0;
+    skyBall = 0;
     shotMade = 0;
     shot += 1
     scoreCount = 0
