@@ -2,7 +2,7 @@
 
 /* global
 loadImage, image, createCanvas, background, frameRate, mouseX, mouseY, width,
-ellipse,
+ellipse, collideCircleCircle,
 */
 
 let duckRight, duckLeft, target, waves, p, ducks, can, rows, shots;
@@ -57,11 +57,17 @@ function mouseMoved(can){
 }
 
 function mouseClicked(){
-  shots.push(new shot(p.x, p.y));
+  for(var i=0; i<ducks.length; i++){
+    if(mouseY<=ducks[i].y+50 && mouseY>=ducks[i].y-50){
+      let hit = collideCircleCircle(p.x, p.y, 10, ducks[i].x+ducks[i].w/2, ducks[i].y+ducks[i].w/2, ducks[i].w);
+      if(hit) ducks.pop();
+      else shots.push(new shot(p.x, p.y));
+    }
+  }
 }
 
 function addRow(y, num, direction, speed, scale){
-  for(let i=0; i<num; i++) ducks.push(new duck(i*width/num, y, scale, scale, direction, speed));
+  for(let i=0; i<num; i++) ducks.push(new duck(i*width/num, y, scale, direction, speed));
 }
 
 function drawWave(y, size){
@@ -69,11 +75,10 @@ function drawWave(y, size){
 }
 
 class duck {
-  constructor(x, y, width, height, direction, speed){
+  constructor(x, y, width, direction, speed){
     this.x = x;
     this.y = y;
     this.w = width;
-    this.h = height;
     this.pointing = direction;
     this.tint = "0"
     
@@ -82,8 +87,8 @@ class duck {
   }
   
   drawDuck(){
-    if(this.pointing=="left") image(duckLeft, this.x, this.y, this.w, this.h);
-    else image(duckRight, this.x, this.y, this.w, this.h);
+    if(this.pointing=="left") image(duckLeft, this.x, this.y, this.w, this.w);
+    else image(duckRight, this.x, this.y, this.w, this.w);
   }
   
   move(){
