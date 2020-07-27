@@ -4,7 +4,7 @@
 loadImage, image, createCanvas, background, frameRate, mouseX, mouseY, width,
 */
 
-let duckRight, duckLeft, target, p, ducks, can;
+let duckRight, duckLeft, target, p, ducks, can, rows;
 
 function preload(){
   duckLeft = loadImage("https://cdn.glitch.com/575c96d4-ad40-4b02-a190-89164f072325%2FduckLeft.png?v=1595867578953");
@@ -19,6 +19,8 @@ function setup(){
   
   ducks = [];
   ducks.push(new duck(0, 50, 50, 50, "right", 3));
+  ducks.push(new duck(width, 200, 50, 50, "left", 2));
+  ducks.push(new duck(0, 400, 50, 50, "right", 1));
   
   p = {
     x: width/2-20,
@@ -43,6 +45,10 @@ function mouseMoved(can){
   p.y = mouseY - p.size/2;
 }
 
+function mouseClicked(){
+  
+}
+
 class duck {
   constructor(x, y, width, height, direction, speed){
     this.x = x;
@@ -62,5 +68,8 @@ class duck {
   
   move(){
     this.x += this.vel;
+    
+    if(this.x<0) this.x = width;
+    if(this.x>width) this.x = 0;
   }
 }
