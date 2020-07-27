@@ -21,23 +21,30 @@
 * random
 * mouseIsPressed
 * arc, PI, OPEN
+* mouseX
+* mouseY
+* circle
+* mouseJustPressed
+* 
 */
 
-let shotMade, score,shot, tries, rim, aim, streak, scoreCount, skyBall
 let xPosition, yPosition
-let x, y
-let xHoop, yHoop
+let shotMade, score, shots, tries, rim, aim, streak 
+let skyBall
+let scoreCount
+let x,y,g
 let direction
+let xHoop, yHoop
 let xSpeed, ySpeed
 let speed
-let g
-let radius
+let shot, radius
 let xRim, yRim
-let xBoard, yBoard
-let mouseX, mouseY
+let xBoard, yBoard 
+
+
 
 function setup() {
-  createCanvas(600, 600); //600 x 400 pixels
+  createCanvas(600, 600); 
   
   // Starting position of the ball
   xPosition = 50;
@@ -46,17 +53,20 @@ function setup() {
   mouseJustPressed = 0;
   shotMade = 0;
   score = 0;
-  shot = 0;
+  shots = 0;
   tries = 0;
   rim = 0;
   aim = 0;
   textDisplay = 0;
   streak = 0;
+  
+  skyBall = 0;
+  
   scoreCount = 0;
 
   
   // Initialize variables x and y to ball start position
-  // x and y are the screen coordinates of the ball
+  // x and y are the screen coordinates of the ball---makes easier
   x = xPosition;
   y = yPosition;
   
@@ -64,9 +74,9 @@ function setup() {
   xHoop = 500
   yHoop = 150
   
-  // Direction the ball is moving? up or down 
+  
   direction=1;
-  xSpeed = 0.3; // this is really the x-speed
+  xSpeed = 0.3; 
   
   ySpeed = -9;
   
@@ -74,8 +84,8 @@ function setup() {
   
   g = - 0.3;
   
-  // Let Ball Fly
-  shot = 0;
+  //  Ball Fly
+  shoot = 0;
   
   // Basketball radius
   radius = 20;
@@ -85,26 +95,21 @@ function setup() {
 function draw() {
   textAlign(CENTER)
   background(220);
-  fill(249,200,82) 
-  rect(0, 200, 600, 200) 
+  fill(210,180,140) // This is color of rect below
+  rect(0, 200, 600, 200) // (x, y, width, height)
 
   fill(0)
   textSize(20)
   text("Basket: " + score, 300, 35)
   fill(250, 100, 100)
-  text("Shots: " + shot, 100, 35)
+  text("Shots: " + shots, 100, 35)
   fill(100, 200, 0)
   text("Streak: " + streak, 500, 35)
   
     
+
   
-  fill(205,250,135) // This is color of rect below
-  rect(175, 25, 250, 25)
-  
-  fill(205,250,135) // This is color of rect below
-  rect(200, 0, 200, 25)
-  
-  // Hoop is an ellipse and the basket is made with the lines  lines for the net
+  // Hoop is an ellipse and some lines for the net
   noFill()
   stroke(0);
   strokeWeight(4);
@@ -114,8 +119,11 @@ function draw() {
   fill(0,0,0)
   quad(xHoop + radius*3/2 - radius/5, yHoop-radius/5, xHoop + radius*3/2 + radius*0.75 - radius/5, yHoop + radius/5, xHoop + radius*3/2 + radius*0.75 - radius/5, yHoop - radius*3 + radius/5, xHoop + radius*3/2 - radius/5, yHoop - radius*3 - radius/5)
   line(xHoop + radius*3/2 + radius/10, yHoop, xHoop + radius*3/2 + radius/10,yPosition+radius)
+  
   noFill()
+
   stroke(255)
+ 
   stroke(0)
   
   strokeWeight(1);
@@ -132,13 +140,15 @@ function draw() {
   stroke(0)
   strokeWeight(1)
   
-  xRim = xHoop-radius*3/2
-  yRim = yHoop
+  xR = xHoop-radius*3/2
+  rimY = yHoop
   
   xBoard = xHoop + radius*3/2
   yBoard = yHoop - radius*3
   
-  if (shot == 1){
+  
+  
+  if (shoot == 1){
     ySpeed = ySpeed - g;
     
     x = x + direction*xSpeed
@@ -162,7 +172,7 @@ function draw() {
     
   }
   
-  if ((xRim-x)*(xRim-x) + (yRim-y)*(yRim-y) <= radius*radius){
+  if ((rimX-x)*(rimX-x) + (yRim-y)*(xRim-y) <= radius*radius){
     speed = sqrt(xSpeed*xSpeed + ySpeed*ySpeed);
     xSpeed = -speed*(xRim-x)/radius;
     ySpeed = -speed*(yRim-y)/radius;
@@ -194,17 +204,18 @@ function draw() {
     xSpeed = 0.3*xSpeed;
     
   }
+  
   if (y < -200){
     skyBall = 1;
   }
-    
+  
   if (aim > 0 & rim == 0 & y > yHoop & shotMade == 0 & textDisplay == 0){
     textSize(64);
     fill(0)
     strokeWeight(3)
-    stroke(100, 200, 0)
+    stroke(255, 0, 0)
     textAlign(CENTER)
-    text("Basket!", 300, yPosition)
+    text("Brick!", 300, yPosition)
     noFill()
   }
   
@@ -224,11 +235,11 @@ function draw() {
     strokeWeight(3)
     stroke(255, 0, 0)
     textAlign(CENTER)
-    text("so close...", 300, yPosition)
+    text("robbed...", 300, yPosition)
     noFill()
   }
   
-  if (rim > 6){
+  if (rim > 7){
     xSpeed = xSpeed +0.1;
   }
   
@@ -250,7 +261,7 @@ function draw() {
   }
   
   
-  
+  // Draw the circle last!!!
   fill(230,105,0)
   stroke(0)
   strokeWeight(1)
@@ -290,16 +301,16 @@ function draw() {
           endText = "On Fire!"
         }
         if (streak == 3){
-          endText = "Respect"
+          endText = "Respect..."
         }
         if (streak == 4){
-          endText = "!!!!!"
+          endText = "Wet!"
         }
         if (streak == 5){
           endText = "Maybe pass sometimes"
         }
         if (streak == 6){
-          endText = "Keep up the good work?"
+          endText = "LeBron is that you!?"
         }
         if (streak == 7){
           endText = "You're a wizard Harry!"
@@ -311,13 +322,13 @@ function draw() {
           endText = "STOP. DROP. ROLL."
         }
         if (streak == 10){
-          endText = "Are you a professional?"
+          endText = "Jesus is that you!?"
         }
         if (streak == 11){
-          endText = "As good as Lebron"
+          endText = "U go hard in paint"
         }
         if (streak > 11){
-          endText = "PRO!"
+          endText = "LEGEND STATUS!"
         }
         streak += 1;
       }
@@ -360,6 +371,7 @@ function draw() {
     aim = 0
     shot = 0;
     textDisplay = 0;
+    skyBall = 0;
     if (mouseJustPressed == 0){
       if (shotMade == 1){
         if (random(0,1) > 0.75){
@@ -395,7 +407,6 @@ function mouseReleased() {
     xSpeed = -g*5*(mouseX - xPosition)/30;
     ySpeed = -g*5*(mouseY - yPosition)/30;
     mouseJustPressed = 0;
-    skyBall = 0;
     shotMade = 0;
     shot += 1
     scoreCount = 0
@@ -405,7 +416,6 @@ function mouseReleased() {
   }
   
 }
-
 
 //BasketBall Terms
 /*Air Ball: The ball misses the hoop and backboard entirely.
@@ -463,7 +473,6 @@ End Lines: Otherwise known as "baselines"; the lines that run the width of the c
 Fake: A deceptive move by the offense in order to offset the defense.
 Fast Break: A rush down court to beat the opponent to the basket.
 Field Goal: A basket made while the ball is in play.
-Field Goal Percentage: The number of field goals attempted.
 Fishhook Cut: Quickly changing direction.
 Five-second Violation: Taking longer than five seconds to pass the ball inbounds to a teammate.
 Forwards: Players positioned along the free-throw lane and who are generally closer to the basket than the guards.

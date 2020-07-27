@@ -8,7 +8,7 @@ textSize,
 */
 
 let xCan = 500;
-let yCan = 800;
+let yCan = xCan*8/5;
 
 let arrow, currentBall, can, holes;
 let tickets = 0;
