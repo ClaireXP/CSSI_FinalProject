@@ -336,7 +336,7 @@ function draw() {
     line(xHoop-radius*3/4, yHoop , xHoop-radius, yHoop + 3*radius)
     line(xHoop +radius, yHoop + 3*radius, xHoop + radius*3/4, yHoop)
     line(xHoop + radius*3/4, yHoop, (xHoop - radius*3/2 + xHoop - radius)/4, yHoop+radius*3/2)
-    line(xHoop - radius*3/5, yHoop, (xHoop + radius*3/6 + xHoop + radius)/8, yHoop+radius*3/9)
+    line(xHoop - radius*3/5, yHoop, (xHoop + radius*3/6 + xHoop + radius)/8, yHoop+radius*3/4)
     line((xHoop - radius*3/2 + xHoop - radius)/2, yHoop+radius*3/2, xHoop +radius, yHoop + 3*radius)
     line((xHoop + radius*3/2 + xHoop + radius)/2, yHoop+radius*3/2, xHoop -radius, yHoop + 3*radius)
     stroke(0)
