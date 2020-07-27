@@ -1,10 +1,10 @@
 // https://glitch.com/edit/#!/cas-duckhunt?path=script.js%3A1%3A0
 
 /* global
-loadImage, image, createCanvas, background, frameRate,
+loadImage, image, createCanvas, background, frameRate, mouseX, mouseY, width,
 */
 
-let duckRight, duckLeft, target, player, ducks;
+let duckRight, duckLeft, target, p, ducks, can;
 
 function preload(){
   duckLeft = loadImage("https://cdn.glitch.com/575c96d4-ad40-4b02-a190-89164f072325%2FduckLeft.png?v=1595867578953");
@@ -13,12 +13,18 @@ function preload(){
 }
 
 function setup(){
-  createCanvas(600, 500);
+  can = createCanvas(600, 500);
   background(51);
   frameRate(60);
   
   ducks = [];
   ducks.push(new duck(0, 50, 50, 50, "right", 3));
+  
+  p = {
+    x: width/2-20,
+    y: 380,
+    size: 40,
+  }
 }
 
 function draw(){
@@ -28,6 +34,13 @@ function draw(){
     ducks[i].drawDuck();
     ducks[i].move();
   }
+  
+  image(target, p.x, p.y, p.size, p.size)
+}
+
+function mouseMoved(can){
+  p.x = mouseX - p.size/2;
+  p.y = mouseY - p.size/2;
 }
 
 class duck {

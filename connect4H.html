@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Connect Four</title>
     <meta charset="utf-8" />
@@ -7,23 +7,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/styleC4.css" />
-    <script src="connect4.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- import the webpage's javascript file -->
+    <!--     <script src="/solution.js" defer></script> -->
+    <!--     <script src="/stretch.js" defer></script> -->
+
+    <!-- import the p5.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+
+    <script src="https://unpkg.com/p5.collide2d"></script>
   </head>
-    <body onload="beginGame();">
+  <body onload="beginGame();">
     <!-- This is the heading HTML.  It is instructions on how to play -->
     <h1>Connect Four</h1>
 
     <!-- The begin_game button will run "beginGame()" function when clicked.  The () is required at the end to show it is a 
 		function, but no parameters are displaying -->
-    <button id="begin_game" onclick="beginGame();">Begin Game</button>
+    <button id="begin_game" onclick="beginGame();">Reset Game</button>
 
     <!-- All the action takes place in the gameboard, so I'm containing the gameboard in a div with the ID "gameboard" so that
 		you can always target any items within easily. -->
     <div id="gameboard">
       <!-- The game_info div allows game-specific information to easily be displayed -->
-      <div id="game_info"> 
-      </div>
+      <div id="game_info"></div>
       <!-- The game table is the actual board.  A table seems the most logical structure for the data, as tables have rows and columns
 			although you most certainly could use divs, or other HTML elements.  The top row (and tablehead - 'thead') is reserved for the 
 			buttons to drop the game pieces. -->
@@ -51,6 +58,7 @@
 				is the increment.  This is run every time the code below is run.  In the loops below, I have i++ and j++ which means 
 				"add one to the value of row/col" 
 				*/
+          // creating table so i can see it & adding elements
           for (var row = 0; row <= 5; row++) {
             /*document.writeln() function will write HTML code to the browser.  If you "inspect" this page after the browser has 
 					rendered the page, you will see a bunch of HTML
@@ -71,10 +79,11 @@
             //write the closing table row tag.
             document.writeln("</tr>");
           }
-        </script> 
-      </table> 
-<!--       game_status is a place for the game to provide status updates.  -->
-      <div id="game_status"></div> 
-    </div> 
+        </script>
+      </table>
+      <!--       game_status is a place for the game to provide status updates.  -->
+      <div id="game_status"></div>
+    </div>
+    <script src="script.js"></script>
   </body>
 </html>

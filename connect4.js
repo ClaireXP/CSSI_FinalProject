@@ -36,7 +36,7 @@ function beginGame() {
        6 rows, 7 cols
 	*/
 
-  // creating empty game board
+  // creating empty game board w/ 2D array
   for (var row = 0; row <= 5; row++) {
     // each row has its own array
     gameboard[row] = [];
@@ -46,9 +46,11 @@ function beginGame() {
       gameboard[row][col] = 0;
     }
   }
+  setUpTurn();
 }
+
+beginGame();
 active_player = 1; // set the first player to go
-setUpTurn(); // function which gets ready for the player's turn
 drawBoard(); // call the function to draw the board
 
 function setUpTurn() {
@@ -65,6 +67,7 @@ function setUpTurn() {
   }
 }
 
+setUpTurn(); // function which gets ready for the player's turn
 // will add a piece to the lowest available column
 function drop(col) {
   // start from bottom of column and work your way up until you find an empty spot
