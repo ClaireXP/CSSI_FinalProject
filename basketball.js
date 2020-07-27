@@ -37,13 +37,12 @@ let xHoop, yHoop
 let xSpeed, ySpeed
 let speed
 let shot, radius
-let xRim, yRim
+let rimX, rimY
 let xBoard, yBoard 
 
 
-
 function setup() {
-  createCanvas(600, 600); //basketball field 
+  createCanvas(700, 700); 
   
   // Starting position of the ball
   xPosition = 50;
@@ -64,8 +63,7 @@ function setup() {
   scoreCount = 0;
 
   
-  // Initialize variables x and y to ball start position
-  // x and y are the screen coordinates of the ball---makes easier
+  
   x = xPosition;
   y = yPosition;
   
@@ -73,9 +71,9 @@ function setup() {
   xHoop = 500
   yHoop = 150
   
-  
+   
   direction=1;
-  xSpeed = 0.3; 
+  xSpeed = 0.3;
   
   ySpeed = -9;
   
@@ -83,7 +81,7 @@ function setup() {
   
   g = - 0.3;
   
-  //  Ball Fly
+  // Let Ball Fly
   shot = 0;
   
   // Basketball radius
@@ -94,8 +92,8 @@ function setup() {
 function draw() {
   textAlign(CENTER)
   background(220);
-  fill(210,180,140) // This is color of rect below
-  rect(0, 200, 600, 200) // (x, y, width, height)
+  fill(210,180,140) 
+  rect(0, 200, 600, 200)
 
   fill(0)
   textSize(20)
@@ -105,10 +103,7 @@ function draw() {
   fill(100, 200, 0)
   text("Streak: " + streak, 500, 35)
   
-    
-
   
-  // Hoop is an ellipse and some lines for the net
   noFill()
   stroke(0);
   strokeWeight(4);
@@ -118,9 +113,8 @@ function draw() {
   fill(0,0,0)
   quad(xHoop + radius*3/2 - radius/5, yHoop-radius/5, xHoop + radius*3/2 + radius*0.75 - radius/5, yHoop + radius/5, xHoop + radius*3/2 + radius*0.75 - radius/5, yHoop - radius*3 + radius/5, xHoop + radius*3/2 - radius/5, yHoop - radius*3 - radius/5)
   line(xHoop + radius*3/2 + radius/10, yHoop, xHoop + radius*3/2 + radius/10,yPosition+radius)
-  
+ 
   noFill()
-
   stroke(255)
  
   stroke(0)
@@ -139,13 +133,13 @@ function draw() {
   stroke(0)
   strokeWeight(1)
   
-  xRim = xHoop-radius*3/2
-  yRim = yHoop
+  rimX = xHoop-radius*3/2
+  rimY = yHoop
   
   xBoard = xHoop + radius*3/2
   yBoard = yHoop - radius*3
   
-  
+
   
   if (shot == 1){
     ySpeed = ySpeed - g;
@@ -171,10 +165,10 @@ function draw() {
     
   }
   
-  if ((xRim-x)*(xRim-x) + (yRim-y)*(xRim-y) <= radius*radius){
+  if ((rimX-x)*(rimX-x) + (rimY-y)*(rimY-y) <= radius*radius){
     speed = sqrt(xSpeed*xSpeed + ySpeed*ySpeed);
-    xSpeed = -speed*(xRim-x)/radius;
-    ySpeed = -speed*(yRim-y)/radius;
+    xSpeed = -speed*(rimX-x)/radius;
+    ySpeed = -speed*(rimY-y)/radius;
     rim += 1;
   }
   
@@ -238,7 +232,7 @@ function draw() {
     noFill()
   }
   
-  if (rim > 7){
+  if (rim > 6){
     xSpeed = xSpeed +0.1;
   }
   
@@ -260,11 +254,11 @@ function draw() {
   }
   
   
-  // Draw the circle last!!!
+  
   fill(230,105,0)
   stroke(0)
   strokeWeight(1)
-  circle(x, y, radius*2)  
+  circle(x, y, radius*2)  // Draws a circle at (x,y,radius)
   noFill()
   if (shotMade == 1){
     if (scoreCount == 0){
@@ -294,25 +288,25 @@ function draw() {
       if (tries == 1){
         endText = "First Try!"
         if (streak == 1){
-          endText = "Heatin' up!"
+          endText = "Keep it up"
         }
         if (streak == 2){
-          endText = "On Fire!"
+          endText = "Up the game!"
         }
         if (streak == 3){
-          endText = "Respect..."
+          endText = "On Fire"
         }
         if (streak == 4){
-          endText = "Wet!"
+          endText = "GOOO!"
         }
         if (streak == 5){
           endText = "Maybe pass sometimes"
         }
         if (streak == 6){
-          endText = "LeBron is that you!?"
+          endText = "Are you a pro"
         }
         if (streak == 7){
-          endText = "You're a wizard Harry!"
+          endText = "You're a wizard!"
         }
         if (streak == 8){
           endText = "Ur a legend"
@@ -327,7 +321,7 @@ function draw() {
           endText = "U go hard in paint"
         }
         if (streak > 11){
-          endText = "LEGEND STATUS!"
+          endText = "LEGEND!"
         }
         streak += 1;
       }
@@ -341,10 +335,10 @@ function draw() {
     strokeWeight(4);
     line(xHoop-radius*3/4, yHoop , xHoop-radius, yHoop + 3*radius)
     line(xHoop +radius, yHoop + 3*radius, xHoop + radius*3/4, yHoop)
-    line(xHoop + radius*3/4, yHoop, (xHoop - radius*3/4 + xHoop - radius)/4, yHoop+radius*3/4)
-    line(xHoop - radius*3/4, yHoop, (xHoop + radius*3/4 + xHoop + radius)/4, yHoop+radius*3/4)
-    line((xHoop - radius*3/4 + xHoop - radius)/4, yHoop+radius*3/4, xHoop +radius, yHoop + 3*radius)
-    line((xHoop + radius*3/4 + xHoop + radius)/4, yHoop+radius*3/4, xHoop -radius, yHoop + 3*radius)
+    line(xHoop + radius*3/4, yHoop, (xHoop - radius*3/2 + xHoop - radius)/4, yHoop+radius*3/2)
+    line(xHoop - radius*3/5, yHoop, (xHoop + radius*3/6 + xHoop + radius)/8, yHoop+radius*3/9)
+    line((xHoop - radius*3/2 + xHoop - radius)/2, yHoop+radius*3/2, xHoop +radius, yHoop + 3*radius)
+    line((xHoop + radius*3/2 + xHoop + radius)/2, yHoop+radius*3/2, xHoop -radius, yHoop + 3*radius)
     stroke(0)
     strokeWeight(1)
     textSize(64);
@@ -407,7 +401,7 @@ function mouseReleased() {
     ySpeed = -g*5*(mouseY - yPosition)/30;
     mouseJustPressed = 0;
     shotMade = 0;
-    shot += 1
+    shots += 1
     scoreCount = 0
     tries += 1;
     rim = 0
@@ -417,7 +411,7 @@ function mouseReleased() {
 }
 
 //BasketBall Terms
-/*Air Ball: The ball misses the hoop and backboard entirely.
+/* Air Ball: The ball misses the hoop and backboard entirely.
 Alley-oop: A high arc pass to a teammate in a position near the basket to leap and score.
 Alternating-possession rule: A rule in which teams take turns possessing the ball after stopped plays.
 Assist: A pass that sets up a score.
