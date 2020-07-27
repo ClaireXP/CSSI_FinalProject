@@ -25,7 +25,6 @@
 * mouseY
 * circle
 * mouseJustPressed
-* 
 */
 
 let xPosition, yPosition
@@ -44,7 +43,7 @@ let xBoard, yBoard
 
 
 function setup() {
-  createCanvas(600, 600); 
+  createCanvas(600, 600); //basketball field 
   
   // Starting position of the ball
   xPosition = 50;
@@ -85,7 +84,7 @@ function setup() {
   g = - 0.3;
   
   //  Ball Fly
-  shoot = 0;
+  shot = 0;
   
   // Basketball radius
   radius = 20;
@@ -140,15 +139,15 @@ function draw() {
   stroke(0)
   strokeWeight(1)
   
-  xR = xHoop-radius*3/2
-  rimY = yHoop
+  xRim = xHoop-radius*3/2
+  yRim = yHoop
   
   xBoard = xHoop + radius*3/2
   yBoard = yHoop - radius*3
   
   
   
-  if (shoot == 1){
+  if (shot == 1){
     ySpeed = ySpeed - g;
     
     x = x + direction*xSpeed
@@ -172,7 +171,7 @@ function draw() {
     
   }
   
-  if ((rimX-x)*(rimX-x) + (yRim-y)*(xRim-y) <= radius*radius){
+  if ((xRim-x)*(xRim-x) + (yRim-y)*(xRim-y) <= radius*radius){
     speed = sqrt(xSpeed*xSpeed + ySpeed*ySpeed);
     xSpeed = -speed*(xRim-x)/radius;
     ySpeed = -speed*(yRim-y)/radius;
@@ -340,12 +339,12 @@ function draw() {
     
     stroke(255)
     strokeWeight(4);
-    line(xHoop-radius*3/2, yHoop , xHoop-radius, yHoop + 3*radius)
-    line(xHoop +radius, yHoop + 3*radius, xHoop + radius*3/2, yHoop)
-    line(xHoop + radius*3/2, yHoop, (xHoop - radius*3/2 + xHoop - radius)/2, yHoop+radius*3/2)
-    line(xHoop - radius*3/2, yHoop, (xHoop + radius*3/2 + xHoop + radius)/2, yHoop+radius*3/2)
-    line((xHoop - radius*3/2 + xHoop - radius)/2, yHoop+radius*3/2, xHoop +radius, yHoop + 3*radius)
-    line((xHoop + radius*3/2 + xHoop + radius)/2, yHoop+radius*3/2, xHoop -radius, yHoop + 3*radius)
+    line(xHoop-radius*3/4, yHoop , xHoop-radius, yHoop + 3*radius)
+    line(xHoop +radius, yHoop + 3*radius, xHoop + radius*3/4, yHoop)
+    line(xHoop + radius*3/4, yHoop, (xHoop - radius*3/4 + xHoop - radius)/4, yHoop+radius*3/4)
+    line(xHoop - radius*3/4, yHoop, (xHoop + radius*3/4 + xHoop + radius)/4, yHoop+radius*3/4)
+    line((xHoop - radius*3/4 + xHoop - radius)/4, yHoop+radius*3/4, xHoop +radius, yHoop + 3*radius)
+    line((xHoop + radius*3/4 + xHoop + radius)/4, yHoop+radius*3/4, xHoop -radius, yHoop + 3*radius)
     stroke(0)
     strokeWeight(1)
     textSize(64);
