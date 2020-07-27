@@ -2,10 +2,11 @@
 
 /* global
 loadImage, image, createCanvas, background, frameRate, mouseX, mouseY, width,
-ellipse, collideCircleCircle,
+ellipse, collideCircleCircle, fill, textSize, text
 */
 
-let duckRight, duckLeft, target, waves, p, ducks, can, rows, shots;
+let duckRight, duckLeft, target, waves, p, ducks, can, rows, shots, misses;
+let tickets = 0;
 
 function preload(){
   duckLeft = loadImage("https://cdn.glitch.com/575c96d4-ad40-4b02-a190-89164f072325%2FduckLeft.png?v=1595867578953");
@@ -19,24 +20,14 @@ function setup(){
   background(51);
   frameRate(60);
   
-  shots = [];
-  ducks = [];
-  addRow(125, 3, "left", 5, 30);
-  addRow(200, 4, "right", 3.5, 40);
-  addRow(300, 5, "left", 2, 50);
-  
-  p = {
-    x: width/2-20,
-    y: 380,
-    size: 40,
-  }
+  reset();
 }
 
 function draw(){
   background(51);
   
-  for(const s of shots){
-    ellipse(s.x + p.size/2, s.y + p.size/2, 10);
+  for(const m of misses){
+    ellipse(m.x + p.size/2, m.y + p.size/2, 10);
   }
   
   for(var i=0; i<ducks.length; i++){
@@ -49,6 +40,10 @@ function draw(){
   drawWave(314, 65);
   
   image(target, p.x, p.y, p.size, p.size);
+  
+  fill("white");
+  textSize(20);
+  text(`Tickets: ${tickets}`, 5, 20);
 }
 
 function mouseMoved(can){
@@ -63,15 +58,30 @@ function mouseClicked(can){
       let hit = collideCircleCircle(p.x, p.y, p.size, ducks[i].x+ducks[i].w/2, ducks[i].y+ducks[i].w/2, ducks[i].w*.5);
       if(hit){
         miss = false;
+        tickets += ducks[i].score;
         bye(ducks, i);
         break;
       } 
     }
-  }if(miss) shots.push(new shot(p.x, p.y));
+  }if(miss) misses.push(new shot(p.x, p.y));
 }
 
-function addRow(y, num, direction, speed, scale){
-  for(let i=0; i<num; i++) ducks.push(new duck(i*width/num, y, scale, direction, speed));
+function reset(){
+  misses = [];
+  ducks = [];
+  addRow(125, 3, "left", 5, 30, 10);
+  addRow(200, 4, "right", 3.5, 40, 5);
+  addRow(300, 5, "left", 2, 50, 1);
+  
+  p = {
+    x: width/2-20,
+    y: 380,
+    size: 40,
+  }
+}
+
+function addRow(y, num, direction, speed, scale, score){
+  for(let i=0; i<num; i++) ducks.push(new duck(i*width/num, y, scale, direction, speed, score));
 }
 
 function drawWave(y, size){
@@ -85,12 +95,13 @@ function bye(list, i){
 }
 
 class duck {
-  constructor(x, y, width, direction, speed){
+  constructor(x, y, width, direction, speed, amt){
     this.x = x;
     this.y = y;
     this.w = width;
     this.pointing = direction;
     this.tint = "0"
+    this.score = amt;
     
     this.vel = speed;
     if(this.pointing == "left") this.vel = -this.vel;
