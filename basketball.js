@@ -274,7 +274,7 @@ function draw() {
         endText = "Draino!"
       }
       if (rim > 0 & aim >=2){
-        endText = "Buckets!"
+        endText = "Great Basket!"
       }
       if (xPosition < 75){
         endText = "Ballin'!"
