@@ -56,14 +56,18 @@ function mouseMoved(can){
   p.y = mouseY - p.size/2;
 }
 
-function mouseClicked(){
+function mouseClicked(can){
+  let miss = true;
   for(var i=0; i<ducks.length; i++){
     if(mouseY<=ducks[i].y+50 && mouseY>=ducks[i].y-50){
-      let hit = collideCircleCircle(p.x, p.y, 10, ducks[i].x+ducks[i].w/2, ducks[i].y+ducks[i].w/2, ducks[i].w);
-      if(hit) ducks.pop();
-      else shots.push(new shot(p.x, p.y));
+      let hit = collideCircleCircle(p.x, p.y, p.size, ducks[i].x+ducks[i].w/2, ducks[i].y+ducks[i].w/2, ducks[i].w*.5);
+      if(hit){
+        miss = false;
+        ducks.pop();
+        break;
+      } 
     }
-  }
+  }if(miss) shots.push(new shot(p.x, p.y));
 }
 
 function addRow(y, num, direction, speed, scale){
