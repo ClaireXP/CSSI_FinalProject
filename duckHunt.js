@@ -63,7 +63,7 @@ function mouseClicked(can){
       let hit = collideCircleCircle(p.x, p.y, p.size, ducks[i].x+ducks[i].w/2, ducks[i].y+ducks[i].w/2, ducks[i].w*.5);
       if(hit){
         miss = false;
-        ducks.pop();
+        bye(ducks, i);
         break;
       } 
     }
@@ -76,6 +76,12 @@ function addRow(y, num, direction, speed, scale){
 
 function drawWave(y, size){
   image(waves, 0, y, width, size);
+}
+
+function bye(list, i){
+  list = list.splice(i, 1);
+  
+  console.log(list);
 }
 
 class duck {

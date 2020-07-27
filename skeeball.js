@@ -7,7 +7,7 @@ quad, millis, frameRate, arc, PI, OPEN, stroke, noStroke, collidePointEllipse, t
 textSize,
 */
 
-let xCan = 500;
+let xCan = yCan*;
 let yCan = xCan*8/5;
 
 let arrow, currentBall, can, holes;
