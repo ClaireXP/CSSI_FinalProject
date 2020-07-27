@@ -2,10 +2,12 @@
 
 /* global
 loadImage, image, createCanvas, background, frameRate, mouseX, mouseY, width,
-ellipse, collideCircleCircle, fill, textSize, text
+ellipse, collideCircleCircle, fill, textSize, text, ARROW, cursor, noCursor,
+createButton, height
 */
 
-let duckRight, duckLeft, target, waves, p, ducks, can, rows, shots, misses;
+let duckRight, duckLeft, target, waves, p, ducks, can, rows, shots, misses, btn;
+let noBtn = true;
 let tickets = 0;
 
 function preload(){
@@ -20,30 +22,71 @@ function setup(){
   background(51);
   frameRate(60);
   
+  p = {
+    x: width/2-20,
+    y: 380,
+    size: 40,
+  }
+  
   reset();
 }
 
 function draw(){
-  background(51);
-  
-  for(const m of misses){
-    ellipse(m.x + p.size/2, m.y + p.size/2, 10);
+  if(shots>0){
+    background(51);
+
+    for(const m of misses){
+      ellipse(m.x + p.size/2, m.y + p.size/2, 10);
+    }
+
+    for(var i=0; i<ducks.length; i++){
+      ducks[i].drawDuck();
+      ducks[i].move();
+    }
+
+    drawWave(139, 25);
+    drawWave(216, 40);
+    drawWave(314, 65);
+
+    image(target, p.x, p.y, p.size, p.size);
+
+    fill("white");
+    textSize(20);
+    text(`Tickets: ${tickets}`, 5, 20);
+    textSize(15);
+    text(`Shots Left: ${shots}`, 5, 40);
+  }else{
+    cursor(ARROW);
+    if(noBtn){
+      background(51);
+
+      for(const m of misses){
+        ellipse(m.x + p.size/2, m.y + p.size/2, 10);
+      }
+
+      for(var i=0; i<ducks.length; i++){
+        ducks[i].drawDuck();
+        ducks[i].move();
+      }
+
+      drawWave(139, 25);
+      drawWave(216, 40);
+      drawWave(314, 65);
+
+      image(target, p.x, p.y, p.size, p.size);
+
+      fill("white");
+      textSize(20);
+      text(`Tickets: ${tickets}`, 5, 20);
+      textSize(15);
+      text(`Shots Left: ${shots}`, 5, 40);
+      
+      btn = createButton('Play Again!');
+      btn.mousePressed(playAgain);
+      btn.position(300-25, 250)
+      noBtn = false;
+    }
   }
-  
-  for(var i=0; i<ducks.length; i++){
-    ducks[i].drawDuck();
-    ducks[i].move();
-  }
-  
-  drawWave(139, 25);
-  drawWave(216, 40);
-  drawWave(314, 65);
-  
-  image(target, p.x, p.y, p.size, p.size);
-  
-  fill("white");
-  textSize(20);
-  text(`Tickets: ${tickets}`, 5, 20);
 }
 
 function mouseMoved(can){
@@ -52,32 +95,32 @@ function mouseMoved(can){
 }
 
 function mouseClicked(can){
-  let miss = true;
-  for(var i=0; i<ducks.length; i++){
-    if(mouseY<=ducks[i].y+50 && mouseY>=ducks[i].y-50){
-      let hit = collideCircleCircle(p.x, p.y, p.size, ducks[i].x+ducks[i].w/2, ducks[i].y+ducks[i].w/2, ducks[i].w*.5);
-      if(hit){
-        miss = false;
-        tickets += ducks[i].score;
-        bye(ducks, i);
-        break;
-      } 
-    }
-  }if(miss) misses.push(new shot(p.x, p.y));
+  if(shots>0 && noBtn){
+    let miss = true;
+    for(var i=0; i<ducks.length; i++){
+      if(mouseY<=ducks[i].y+50 && mouseY>=ducks[i].y-50){
+        let hit = collideCircleCircle(p.x, p.y, p.size, ducks[i].x+ducks[i].w/2, ducks[i].y+ducks[i].w/2, ducks[i].w*.5);
+        if(hit){
+          miss = false;
+          tickets += ducks[i].score;
+          bye(ducks, i);
+          break;
+        } 
+      }
+    }if(miss) misses.push(new shot(p.x, p.y));
+    shots--;
+  }
 }
 
 function reset(){
+  shots = 5;
+  
+  noCursor();
   misses = [];
   ducks = [];
   addRow(125, 3, "left", 5, 30, 10);
   addRow(200, 4, "right", 3.5, 40, 5);
   addRow(300, 5, "left", 2, 50, 1);
-  
-  p = {
-    x: width/2-20,
-    y: 380,
-    size: 40,
-  }
 }
 
 function addRow(y, num, direction, speed, scale, score){
@@ -92,6 +135,12 @@ function bye(list, i){
   list = list.splice(i, 1);
   
   console.log(list);
+}
+
+function playAgain(){
+  reset();
+  btn.remove();
+  noBtn = true;
 }
 
 class duck {
