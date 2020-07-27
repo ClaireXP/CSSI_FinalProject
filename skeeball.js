@@ -191,8 +191,8 @@ class ball {
   }
   
   roll(){
-    if(this.y>yCan/2 && this.vel>0) this.y -= 15*this.vel;
-    else if(this.y>yCan/3-this.vel*this.deltaT-25 && this.y>yCan/8) this.y -= 4*this.vel;
+    if(this.y>yCan/3 && this.vel>0) this.y -= 15*this.vel;
+    else if(this.y>yCan/2-this.vel*this.deltaT-25 && this.y>yCan/8) this.y -= 4*this.vel;
     else if(!this.stopped) this.stopped = true;
     
     if(this.y>yCan/2-this.vel*this.deltaT-25 && this.y>yCan/8) this.x -= 2*this.xDist/this.deltaT;
