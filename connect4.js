@@ -13,6 +13,8 @@ var ticket1 = 0;
 var ticket2 = 0;
 var button1;
 
+let tickets = 0;
+
 function beginGame() {
   // don't want to reset game until the last one is done. If game is still active, RETURN b/c that will stop the
   // rest of the functions and the game. Since beginGame is not called as part of a different function,
@@ -231,5 +233,6 @@ function endGame(winningPlayer) {
 }
 
 function backButton() {
+  // if(getURLParams().tix!="undefined") tickets += getURLParams().tix;
   window.location.href = "./index.html";
 }

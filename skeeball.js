@@ -17,9 +17,7 @@ function preload(){
   arrow = loadImage("https://cdn.glitch.com/9ffc4761-79d4-40de-97ac-089782a08e10%2Fbright-arrow.png?v=1595624276573");
 }
 
-function setup(){
-  if(getURLParams().tix!="undefined") tickets = getURLParams().tix;
-  
+function setup(){  
   can = createCanvas(xCan, yCan);
   frameRate(60);
   
@@ -178,6 +176,7 @@ function makeBtn(button, words, x, y, func){
 }
 
 function backButton() {
+  if(getURLParams().tix!="undefined") tickets += getURLParams().tix;
   window.location.href = "./index.html?tix=" +tickets;
 }
 

@@ -28,6 +28,7 @@
 * height
 * width
 * createButton
+* getURLParams
 */
 
 let xPosition, yPosition
@@ -44,6 +45,7 @@ let rimX, rimY
 let xBoard, yBoard 
 
 let button;
+let tickets = 0;
 
 
 function setup() {
@@ -424,7 +426,8 @@ function btn(button, words, x, y, func){
 }
 
 function backButton() {
-  window.location.href = "./index.html";
+  if(getURLParams().tix!="undefined") tickets += getURLParams().tix;
+  window.location.href = "./index.html?tix=" +tickets;
 }
 
 

@@ -21,8 +21,6 @@ function preload(){
 }
 
 function setup(){
-  if(getURLParams().tix!="undefined") tickets = getURLParams().tix;
-  
   if(prop*5/6 >= y) prop = 6/5*y - 20;
   can = createCanvas(prop, prop*5/6);
   sizing = height/13;
@@ -139,6 +137,7 @@ function makeBtn(button, words, x, y, func){
 }
 
 function backButton() {
+  if(getURLParams().tix!="undefined") tickets += getURLParams().tix;
   window.location.href = "./index.html?tix=" +tickets;
 }
 

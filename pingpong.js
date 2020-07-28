@@ -25,6 +25,7 @@ createSlider,
 frameRate,
 storeItem,
 getItem,
+getURLParams,
 */
 
 let xCan = window.innerWidth-20;
@@ -37,6 +38,7 @@ let type;
 let score = 0;
 let highscore;
 let lives;
+let tickets = 0;
 
 let w = xCan/12;
 if(w >= 75) w = 75;
@@ -346,5 +348,6 @@ function makeBtn(button, words, x, y, func){
 }
 
 function backButton() {
-  window.location.href = "./index.html";
+  if(getURLParams().tix!="undefined") tickets += getURLParams().tix;
+  window.location.href = "./index.html?tix=" +tickets;
 }
