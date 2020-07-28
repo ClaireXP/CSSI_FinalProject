@@ -3,16 +3,16 @@ loadImage, createCanvas, image, textFont, fill, text, width, height, background,
 textSize
 */
 
-var title, myFont, room, balloon, basketball, connect4, duckHunt, pingpong, skeeball, duckHunt;
+let title, myFont, room, balloon, basketball, connect4, duckHunt, pingpong, skeeball;
 let button1, button2, button3, button4, button5, button6;
 
 function preload() {
 //   myFont = loadFont('https://cdn.glitch.com/b075c885-b8f5-4cf7-b604-e0b21585599d%2FInconsolata.zip?v=1595960689205');
   balloon = loadImage("https://cdn.glitch.com/b075c885-b8f5-4cf7-b604-e0b21585599d%2Fdart.jpg?v=1595961856017");
-  // basketball = loadImage("");
+  basketball = loadImage("https://cdn.glitch.com/b075c885-b8f5-4cf7-b604-e0b21585599d%2Fbasketball.png?v=1595961978691");
   connect4 = loadImage("https://cdn.glitch.com/b075c885-b8f5-4cf7-b604-e0b21585599d%2Fconnect4.jpg?v=1595961309026");
-  // duckHunt = loadImage("");
-  // pingpong = loadImage("");
+  duckHunt = loadImage("https://cdn.glitch.com/b075c885-b8f5-4cf7-b604-e0b21585599d%2Fduck-hunt.png?v=1595962101966");
+  pingpong = loadImage("https://cdn.glitch.com/b075c885-b8f5-4cf7-b604-e0b21585599d%2Fpingpong.webp?v=1595962174252");
   skeeball = loadImage("https://cdn.glitch.com/b075c885-b8f5-4cf7-b604-e0b21585599d%2Fskeeball.png?v=1595961476559");
   room = loadImage("https://cdn.glitch.com/b075c885-b8f5-4cf7-b604-e0b21585599d%2FarcadeRoom.jpg?v=1595961020109");
 }
@@ -25,29 +25,29 @@ function setup() {
   textSize(30);
   text('THE C\.\A\.\S\.\ ARCADE', width/2-130, 50);
   
-  button1 = createButton('Balloon');
-  button1.position(19, 19);
-  button1.mousePressed(balloonChoice);
+  image(balloon, 0, 50, width/4, height-250)
+  btn(button1, 'Balloon', 40, height/2-25, balloonChoice);
   
-  button2 = createButton('Basketball');
-  button2.position(250, 30);
-  button2.mousePressed(basketballChoice);
+  image(basketball, width/3+30, 50, width/4, height-250)
+  btn(button2, 'Basketball', 300, height/2-25, basketballChoice);
   
-  button3 = createButton('Connect 4');
-  button3.position(160, 50);
-  button3.mousePressed(connect4Choice);
+  image(connect4, 450, 50, width/4, height-250)
+  btn(button3, 'Connect 4', 500, height/2-25, connect4Choice);
   
-  button4 = createButton('Duck Hunt');
-  button4.position(100, 190);
-  button4.mousePressed(duckHunt);
+  image(duckHunt, 0, 0, width/4, height-250)
+  btn(button4, 'Duck Hunt', 40, height-25, duckHunt);
   
-  button5 = createButton('Ping Pong');
-  button5.position(200, 200);
-  button5.mousePressed(pingpongChoice);
+  image(pingpong, width/3+30, 50, width/4, height-250)
+  btn(button5, 'Ping Pong', 300, height-25, pingpongChoice);
   
-  button6 = createButton('Skeeball');
-  button6.position(300, 3000);
-  button6.mousePressed(skeeBallChoice);
+  image(skeeball, 450, height-190, width/4, height-250)
+  btn(button6, 'Skeeball', 500, height-25, skeeBallChoice);
+}
+
+function btn(button, words, x, y, func){
+  button = createButton(`${words}`);
+  button.position(x, y);
+  button.mousePressed(func);
 }
 
 function balloonChoice() {
@@ -72,4 +72,8 @@ function duckHuntChoice() {
 
 function pingpongChoice() {
   window.location.href = "./pingpong.html";
+}
+
+function backButton() {
+  window.location.href = "./index.html";
 }

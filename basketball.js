@@ -25,6 +25,7 @@
 * mouseY
 * circle
 * mouseJustPressed
+* height
 */
 
 let xPosition, yPosition
@@ -102,7 +103,7 @@ function draw() {
   text("Shots: " + shots, 100, 35)
   fill(100, 200, 0)
   text("Streak: " + streak, 500, 35)
-  
+  text("https://editor.p5js.org/rjgilmour/sketches/uCw6P5waj", width-400, height - 50)
   
   noFill()
   stroke(0);
@@ -410,5 +411,7 @@ function mouseReleased() {
   
 }
 
+
 // credit to The Coding Train, How to do Basketball p5js, processing tutorial
 //youtube.com/watch?v=YIKRXl3wH8Y&vl=en, https://www.youtube.com/watch?v=LO3Awjn_gyU
+//https://editor.p5js.org/rjgilmour/sketches/uCw6P5waj
