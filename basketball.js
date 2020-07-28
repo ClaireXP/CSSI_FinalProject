@@ -92,7 +92,7 @@ function setup() {
   // Basketball radius
   radius = 20;
   
-  btn(button, "Back", 330, 475, backButton);
+  btn(button, "Back", window.innerWidth/2-20, 475, backButton);
 }
 
 function draw() {

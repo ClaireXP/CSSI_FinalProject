@@ -30,7 +30,7 @@ function setup() {
   text('THE C\.\A\.\S\.\ ARCADE', width/2-140, 50);
   
   image(balloon, 15, height*65/400, width/5, width/5)
-  btn(button1, 'Balloon', width/12, height/2-5, balloonChoice);
+  btn(button1, 'Balloon', width/10, height/2-5, balloonChoice);
   
   image(basketball, width/3+10, height*65/400, width/5, width/5)
   btn(button2, 'Basketball', width*13/30, height/2-5, basketballChoice);
