@@ -6,7 +6,7 @@ ellipse, collideCircleCircle, fill, textSize, text, ARROW, cursor, noCursor,
 createButton, height
 */
 
-let duckRight, duckLeft, target, waves, p, ducks, can, rows, shots, misses, btn;
+let duckRight, duckLeft, target, waves, p, ducks, can, rows, shots, misses, btn, button;
 let noBtn = true;
 let tickets = 0;
 
@@ -29,6 +29,7 @@ function setup(){
   }
   
   reset();
+  makeBtn(button, "Back", width/2, 475, backButton);
 }
 
 function draw(){
@@ -139,6 +140,16 @@ function playAgain(){
   reset();
   btn.remove();
   noBtn = true;
+}
+
+function makeBtn(button, words, x, y, func){
+  button = createButton(`${words}`);
+  button.position(x, y);
+  button.mousePressed(func);
+}
+
+function backButton() {
+  window.location.href = "./index.html";
 }
 
 class duck {

@@ -47,7 +47,7 @@ let button;
 
 
 function setup() {
-  createCanvas(700, 700); 
+  createCanvas(650, 500); 
   
   // Starting position of the ball
   xPosition = 50;
@@ -92,7 +92,7 @@ function setup() {
   // Basketball radius
   radius = 20;
   
-  // btn(button, "Back", 350, 650, backButton);
+  btn(button, "Back", 330, 475, backButton);
 }
 
 function draw() {

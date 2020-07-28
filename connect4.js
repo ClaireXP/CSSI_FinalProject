@@ -11,6 +11,7 @@ player_color[1] = "red"; // player 1 is red
 player_color[2] = "blue"; // player 2 is blue
 var ticket1 = 0;
 var ticket2 = 0;
+var button1;
 
 function beginGame() {
   // don't want to reset game until the last one is done. If game is still active, RETURN b/c that will stop the
@@ -229,3 +230,6 @@ function endGame(winningPlayer) {
   empty();
 }
 
+function backButton() {
+  window.location.href = "./index.html";
+}

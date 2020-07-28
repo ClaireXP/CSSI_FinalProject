@@ -94,6 +94,7 @@ function draw() {
   
   // background(200, 20, 180);
   // image(img, width/2, height/2, 100, 150);
+  text('Move With Arrowkeys', height-130, height-20);
   text('TICKETS: ' + tickets, 50, 20);
   
   for (let i = 0; i < balloonTotal; i++) {

@@ -4,13 +4,13 @@
 createCanvas, background, beginShape, endShape, vertex, rect, fill, strokeWeight, 
 image, loadImage, ellipse, mouseX, mouseY, mouseIsPressed, collidePointCircle, 
 quad, millis, frameRate, arc, PI, OPEN, stroke, noStroke, collidePointEllipse, text,
-textSize,
+textSize, createButton,
 */
 
 let yCan = window.innerHeight - 20;
 let xCan = yCan*3/4;
 
-let arrow, currentBall, can, holes;
+let arrow, currentBall, can, holes, btn;
 let tickets = 0;
 
 function preload(){
@@ -25,6 +25,8 @@ function setup(){
   
   holes = [];
   addHoles();
+  
+  makeBtn(btn, "Back", xCan/2-13, 18, backButton);
 }
 
 function draw(){
@@ -165,6 +167,16 @@ function buildMachine(){
   rect(xCan/5.75, yCan/3, xCan/50, -yCan/3.5);
   rect(4*xCan/5, yCan/3, xCan/50, -yCan/3.5);
   rect(xCan/5.75, yCan/3-yCan/3.5, xCan/1.55, yCan/100);
+}
+
+function makeBtn(button, words, x, y, func){
+  button = createButton(`${words}`);
+  button.position(x, y);
+  button.mousePressed(func);
+}
+
+function backButton() {
+  window.location.href = "./index.html";
 }
 
 class ball {

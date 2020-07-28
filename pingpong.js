@@ -27,8 +27,8 @@ storeItem,
 getItem,
 */
 
-let xCan = window.innerWidth-15;
-let yCan = window.innerHeight-15;
+let xCan = window.innerWidth-20;
+let yCan = window.innerHeight-20;
 
 let can, paddle, p, balls, ppb;
 
@@ -49,7 +49,7 @@ if(xCan<400){
   w*=1.2;
 }if(xCan > 600) txt = 1;
 
-let survivalBtn, freeplayBtn, unlimitedBtn, menuBtn, playAgainBtn, pauseBtn, cheatsBtn;
+let survivalBtn, freeplayBtn, unlimitedBtn, menuBtn, playAgainBtn, pauseBtn, cheatsBtn, btn;
 let freqSlider, wSlider;
 
 let magicSec, firstMilli, another;
@@ -66,6 +66,8 @@ function preload(){
 function setup(){
   frameRate(90);
   refresh();
+  
+  makeBtn(btn, "Back", xCan/2, yCan-23, backButton);
 }
 
 function draw(){
@@ -335,4 +337,14 @@ function button(n, x, y, w, h, funct){
   n.position(x, y);
   n.size(w, h);
   n.mousePressed(funct);
+}
+
+function makeBtn(button, words, x, y, func){
+  button = createButton(`${words}`);
+  button.position(x, y);
+  button.mousePressed(func);
+}
+
+function backButton() {
+  window.location.href = "./index.html";
 }

@@ -35,7 +35,7 @@ function setup() {
   btn(button3, 'Connect 4', 500, height/2-5, connect4Choice);
   
   image(duckHunt, 0, height-160, width/5, width/5)
-  btn(button4, 'Duck Hunt', 40, height-25, duckHunt);
+  btn(button4, 'Duck Hunt', 40, height-25, duckHuntChoice);
   
   image(pingpong, width/3+40, height-160, width/5, width/5)
   btn(button5, 'Ping Pong', 270, height-25, pingpongChoice);
@@ -67,7 +67,7 @@ function skeeBallChoice() {
 }
 
 function duckHuntChoice() {
-  window.location.href = "./dunkHunt.html";
+  window.location.href = "./duckhunt.html";
 }
 
 function pingpongChoice() {
