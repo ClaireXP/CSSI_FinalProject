@@ -27,6 +27,7 @@
  *    DOWN_ARROW,
  *    LEFT_ARROW,
  *    random,
+ *    collidePointEllipse
  */
 
 let balloons,
@@ -90,13 +91,15 @@ function draw() {
   
   // background(200, 20, 180);
   // image(img, width/2, height/2, 100, 150);
-
+  text('TICKETS: ' + tickets, 50, 20);
+  
   for (let i = 0; i < balloonTotal; i++) {
     balloons[i].display();
     balloons[i].float();
   }
   
   dart();
+  
   
   time = time - .25;
   fill(0);
@@ -110,12 +113,11 @@ function draw() {
   // }
 }
 
-var hit1 = false;
 class randomBalloons {
   constructor() {
-    this.x = random(100, width / 2);
-    this.y = random(height);
     this.r = random(minBallSize, maxBallSize);
+    this.x = random(0, width-2*this.r);
+    this.y = random(height);
     this.color = random(360);
     this.velocityY = random(minSpeed, maxSpeed);
   }
@@ -149,6 +151,10 @@ class randomBalloons {
   
 }
 
+function bye(list, i){
+  list = list.splice(i, 1);
+}
+
 function dart() {
   image(dartImg, dartX, dartY, 50, 80);
   
@@ -164,9 +170,12 @@ function dart() {
   // collidePointEllipse(pointX, pointY, ellipseX, ellipseY, ellipseWidth, ellipseHeight )
   
   for(var i = 0; i < balloonTotal; i++) {
-    hit1 = collidePointEllipse(dartX, dartY, balloons[i].x, balloons[i].y, 100, 150)
+    var hit1 = collidePointEllipse(dartX, dartY, balloons[i].x, balloons[i].y, 100, 150)
     if (hit1) {
-    text('TRUE', 50, 50);
+      tickets++;
+      bye(balloons, i);
+      balloons.push(new randomBalloons());
+      break;
     }
   }
 }
