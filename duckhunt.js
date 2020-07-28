@@ -9,6 +9,7 @@ createButton, height
 let duckRight, duckLeft, target, waves, p, ducks, can, rows, shots, misses, btn, button;
 let noBtn = true;
 let tickets = 0;
+let sizing;
 
 function preload(){
   duckLeft = loadImage("https://cdn.glitch.com/575c96d4-ad40-4b02-a190-89164f072325%2FduckLeft.png?v=1595867578953");
@@ -19,13 +20,15 @@ function preload(){
 
 function setup(){
   can = createCanvas(600, 500);
+  sizing = width*height*4/30000;
+  
   background(51);
   frameRate(60);
   
   p = {
-    x: width/2-20,
-    y: 38/60,
-    size: 40,
+    x: width/2-5,
+    y: height*4/5,
+    size: sizing,
   }
   
   reset();
@@ -34,54 +37,11 @@ function setup(){
 
 function draw(){
   if(shots>0){
-    background(51);
-
-    for(const m of misses){
-      ellipse(m.x + p.size/2, m.y + p.size/2, 10);
-    }
-
-    for(var i=0; i<ducks.length; i++){
-      ducks[i].drawDuck();
-      ducks[i].move();
-    }
-
-    drawWave(139, 25);
-    drawWave(216, 40);
-    drawWave(314, 65);
-
-    image(target, p.x, p.y, p.size, p.size);
-
-    fill("white");
-    textSize(20);
-    text(`Tickets: ${tickets}`, 5, 20);
-    textSize(15);
-    text(`Shots Left: ${shots}`, 5, 40);
+    updatePix();
   }else{
     cursor(ARROW);
     if(noBtn){
-      background(51);
-
-      for(const m of misses){
-        ellipse(m.x + p.size/2, m.y + p.size/2, 10);
-      }
-
-      for(var i=0; i<ducks.length; i++){
-        ducks[i].drawDuck();
-        ducks[i].move();
-      }
-
-      drawWave(139, 25);
-      drawWave(216, 40);
-      drawWave(314, 65);
-
-      image(target, p.x, p.y, p.size, p.size);
-
-      fill("white");
-      textSize(20);
-      text(`Tickets: ${tickets}`, 5, 20);
-      textSize(15);
-      text(`Shots Left: ${shots}`, 5, 40);
-      
+      updatePix();
       btn = createButton('Play Again!');
       btn.mousePressed(playAgain);
       btn.position(300-25, 250)
@@ -126,6 +86,31 @@ function reset(){
 
 function addRow(y, num, direction, speed, scale, score){
   for(let i=0; i<num; i++) ducks.push(new duck(i*width/num, y, scale, direction, speed, score));
+}
+
+function updatePix(){
+  background(51);
+
+  for(const m of misses){
+    ellipse(m.x + p.size/2, m.y + p.size/2, 10);
+  }
+
+  for(var i=0; i<ducks.length; i++){
+    ducks[i].drawDuck();
+    ducks[i].move();
+  }
+
+  drawWave(height*139/500, sizing*25/40);
+  drawWave(height*216/500, sizing);
+  drawWave(height*314/500, sizing*65/40);
+
+  image(target, p.x, p.y, p.size, p.size);
+
+  fill("white");
+  textSize(20);
+  text(`Tickets: ${tickets}`, 5, 20);
+  textSize(15);
+  text(`Shots Left: ${shots}`, 5, 40);
 }
 
 function drawWave(y, size){
