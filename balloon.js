@@ -28,11 +28,20 @@
  *    LEFT_ARROW,
  *    random,
  *    collidePointEllipse
+ *    text, textSize
+ *    createButton
+ *    round
  */
 
-let balloons,
-  minBallSize = 12;
-let maxBallSize = 30;
+let xCan = window.innerWidth - 20;
+let yCan = window.innerHeight - 20;
+
+let balloons;
+let minBallSize;
+(xCan>yCan)? minBallSize = xCan*12/400 : minBallSize = yCan*12/400;
+let maxBallSize;
+(xCan>yCan)? maxBallSize = xCan*30/400 : maxBallSize = yCan*30/400;
+
 let minSpeed = 1;
 let maxSpeed = 3;
 let balloonTotal = 3;
@@ -63,7 +72,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(xCan, yCan);
   colorMode(HSB, 360, 100, 100);
 
   balloons = [];
@@ -94,8 +103,9 @@ function draw() {
   
   // background(200, 20, 180);
   // image(img, width/2, height/2, 100, 150);
-  text('Move With Arrowkeys', height-130, height-20);
-  text('TICKETS: ' + tickets, 50, 20);
+  textSize(20);
+  text('Move With Arrowkeys', xCan/2-70, height-20);
+  text('TICKETS: ' + tickets, 10, 20);
   
   for (let i = 0; i < balloonTotal; i++) {
     balloons[i].display();
@@ -107,7 +117,7 @@ function draw() {
   
   time = time - .25;
   fill(0);
-  text('TIME REMAINING: ' + round(time), 270, 20);
+  text('TIME REMAINING: ' + round(time), xCan-215, 20);
   if (time < 0) {
     time = 100;
   }

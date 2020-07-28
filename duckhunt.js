@@ -24,7 +24,7 @@ function setup(){
   
   p = {
     x: width/2-20,
-    y: 380,
+    y: 38/60,
     size: 40,
   }
   
