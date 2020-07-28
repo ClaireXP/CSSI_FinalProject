@@ -3,8 +3,9 @@ loadImage, createCanvas, image, textFont, fill, text, width, height, background,
 textSize, getURLParams
 */
 
-let title, myFont, room, balloon, basketball, connect4, duckHunt, pingpong, skeeball, prop, marg, tickets;
+let title, myFont, room, balloon, basketball, connect4, duckHunt, pingpong, skeeball, prop, marg;
 let button1, button2, button3, button4, button5, button6;
+let tickets = 0;
 
 function preload() {
 //   myFont = loadFont('https://cdn.glitch.com/b075c885-b8f5-4cf7-b604-e0b21585599d%2FInconsolata.zip?v=1595960689205');
@@ -18,7 +19,9 @@ function preload() {
 }
 
 function setup() {
-  tickets = getURLParams().tix;
+  let params = getURLParams();
+  if(params!=null && params.tix!="undefined") tickets = getURLParams().tix;
+  
   let xCan = window.innerWidth;
   let yCan = window.innerHeight;
   (xCan<yCan)? prop = xCan-20 : prop = yCan*6/4-20;

@@ -3,7 +3,7 @@
 /* global
 loadImage, image, createCanvas, background, frameRate, mouseX, mouseY, width,
 ellipse, collideCircleCircle, fill, textSize, text, ARROW, cursor, noCursor,
-createButton, height
+createButton, height, getURLParams
 */
 
 let duckRight, duckLeft, target, waves, p, ducks, can, rows, shots, misses, btn, button, sizing;
@@ -21,6 +21,8 @@ function preload(){
 }
 
 function setup(){
+  if(getURLParams().tix!="undefined") tickets = getURLParams().tix;
+  
   if(prop*5/6 >= y) prop = 6/5*y - 20;
   can = createCanvas(prop, prop*5/6);
   sizing = height/13;
@@ -137,7 +139,7 @@ function makeBtn(button, words, x, y, func){
 }
 
 function backButton() {
-  window.location.href = "./index.html";
+  window.location.href = "./index.html?tix=" +tickets;
 }
 
 class duck {

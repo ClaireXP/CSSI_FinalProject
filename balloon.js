@@ -32,6 +32,7 @@
  *    createButton
  *    round
  *    keyIsPressed
+ *    getURLParams
  */
 
 let xCan = window.innerWidth - 20;
@@ -213,5 +214,6 @@ function btn(button, words, x, y, func){
 }
 
 function backButton() {
+  if(getURLParams().tix!="undefined") tickets = getURLParams().tix;
   window.location.href = "./index.html?tix=" +tickets;
 }

@@ -4,7 +4,7 @@
 createCanvas, background, beginShape, endShape, vertex, rect, fill, strokeWeight, 
 image, loadImage, ellipse, mouseX, mouseY, mouseIsPressed, collidePointCircle, 
 quad, millis, frameRate, arc, PI, OPEN, stroke, noStroke, collidePointEllipse, text,
-textSize, createButton,
+textSize, createButton, getURLParams,
 */
 
 let yCan = window.innerHeight - 20;
@@ -18,6 +18,8 @@ function preload(){
 }
 
 function setup(){
+  if(getURLParams().tix!="undefined") tickets = getURLParams().tix;
+  
   can = createCanvas(xCan, yCan);
   frameRate(60);
   
@@ -176,7 +178,7 @@ function makeBtn(button, words, x, y, func){
 }
 
 function backButton() {
-  window.location.href = "./index.html";
+  window.location.href = "./index.html?tix=" +tickets;
 }
 
 class ball {
