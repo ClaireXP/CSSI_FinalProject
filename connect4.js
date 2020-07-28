@@ -7,6 +7,8 @@ var gameboard = []; // define the gameboard as an array
 var player_color = []; // array to hold colors for both players
 player_color[1] = "red"; // player 1 is red
 player_color[2] = "blue"; // player 2 is blue
+var ticket1 = 0;
+var ticket2 = 0;
 
 function beginGame() {
   // don't want to reset game until the last one is done. If game is still active, RETURN b/c that will stop the
@@ -19,7 +21,17 @@ function beginGame() {
   }
 
   // game_active was previously false, so now we're making it true and starting the game.
+
   game_active == true;
+
+  ticket1 = 0;
+  ticket2 = 0;
+  empty();
+  document.getElementById("game_info").innerHTML = "";
+  document.getElementById("ticket1_info").innerHTML =
+    "Player1 Tickets: " + ticket1;
+  document.getElementById("ticket2_info").innerHTML =
+    "Player2 Tickets: " + ticket2;
   /*
   Reset the gameboard to be all 0.  We are going to use a multi-dimensional array - so every
 	section of the board will be represented by a point on the grid - X and Y (col and row).  Top left will be 
@@ -35,7 +47,6 @@ function beginGame() {
        row is horizontal, column is vertical
        6 rows, 7 cols
 	*/
-
   // creating empty game board w/ 2D array
   for (var row = 0; row <= 5; row++) {
     // each row has its own array
@@ -46,28 +57,24 @@ function beginGame() {
       gameboard[row][col] = 0;
     }
   }
-  setUpTurn();
+}
+
+function empty() {
+  for (var row = 0; row <= 5; row++) {
+    // each row has its own array
+    gameboard[row] = [];
+    for (var col = 0; col <= 6; col++) {
+      // each row has its own column
+      // setting every value to 0
+      gameboard[row][col] = 0;
+    }
+  }
 }
 
 beginGame();
 active_player = 1; // set the first player to go
 drawBoard(); // call the function to draw the board
 
-function setUpTurn() {
-  if (game_active == true) {
-    //display who the current player is, and create a <span> with the class of the player# so that it will show the color.
-    document.getElementById("game_info").innerHTML =
-      "Current Player: Player " +
-      active_player +
-      " <span class='player" +
-      active_player +
-      "'>(" +
-      player_color[active_player] +
-      ")</span>";
-  }
-}
-
-setUpTurn(); // function which gets ready for the player's turn
 // will add a piece to the lowest available column
 function drop(col) {
   // start from bottom of column and work your way up until you find an empty spot
@@ -92,7 +99,6 @@ function drop(col) {
 }
 
 function drawBoard() {
-  checkForWin(); // check to see if any player has won
   // can change row/col first for loop doesn't matter which comes first
   for (var col = 0; col <= 6; col++) {
     for (var row = 0; row <= 5; row++) {
@@ -104,8 +110,10 @@ function drawBoard() {
         "<span class='piece player" + gameboard[row][col] + "'> </span>";
     }
   }
+  checkForWin(); // check to see if any player has won
 }
 
+let winner = 0;
 function checkForWin() {
   /* There are many ways this algorithm can be accomplished.  Basically you want to check all possibility for a win.
 				Given the size of the board, checking all possibilities will not be a huge task for the computer, so I will go 
@@ -126,8 +134,8 @@ function checkForWin() {
             gameboard[row][col + 2] == i &&
             gameboard[row][col + 3] == i
           ) {
-            endGame(i); //a match has been made, so run EndGame with the player that had the win
-            return true; //stop checking for a win - the game is over.
+            endGame(i);
+            return true;
           }
         }
       }
@@ -135,7 +143,7 @@ function checkForWin() {
   }
 
   //check top-to-bottom
-  for (i = 1; i <= 2; i++) {
+  for (var i = 1; i <= 2; i++) {
     //since a winning row must be 4 long, we only need to check the first 3 rows, 0,1,and 2
     for (col = 0; col <= 6; col++) {
       for (row = 0; row <= 2; row++) {
@@ -146,8 +154,8 @@ function checkForWin() {
             gameboard[row + 2][col] == i &&
             gameboard[row + 3][col] == i
           ) {
-            endGame(i); //a match has been made - run endGame for the player who had the match.
-            return true; //stop checking for a win - the game is over.
+            endGame(i);
+            return true;
           }
         }
       }
@@ -155,7 +163,7 @@ function checkForWin() {
   }
 
   //check diagnol down
-  for (i = 1; i <= 2; i++) {
+  for (var i = 1; i <= 2; i++) {
     //since a winning row must be 4 long, we only need to check the first 3 rows, 0,1,and 2
     for (col = 0; col <= 3; col++) {
       //we also only need to check the bottom most columns - as the win must be upwards
@@ -176,7 +184,7 @@ function checkForWin() {
   }
 
   //check diagnol up
-  for (i = 1; i <= 2; i++) {
+  for (var i = 1; i <= 2; i++) {
     //since a winning row must be 4 long, we only need to check the first 3 rows, 0,1,and 2
     for (col = 0; col <= 3; col++) {
       //we also only need to check the bottom most columns - as the win must be upwards
@@ -206,7 +214,15 @@ function checkForWin() {
 // kinda like div
 
 function endGame(winningPlayer) {
-  game_active = false; //set the "game_active" to false, so that it can be started again.
   document.getElementById("game_info").innerHTML =
     "Winner is Player " + winningPlayer + "!"; //set the "game_info" to the winner and the winning player
+  if (winningPlayer == 1) ticket1 += 1;
+  else ticket2 += 1;
+  document.getElementById("ticket1_info").innerHTML =
+    "Player1 Tickets: " + ticket1;
+  document.getElementById("ticket2_info").innerHTML =
+    "Player2 Tickets: " + ticket2;
+  game_active = false; //set the "game_active" to false, so that it can be started again.
+  // beginGame();
+  empty();
 }

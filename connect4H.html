@@ -15,7 +15,7 @@
 
     <!-- import the p5.js library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
-
+    
     <script src="https://unpkg.com/p5.collide2d"></script>
   </head>
   <body onload="beginGame();">
@@ -24,13 +24,18 @@
 
     <!-- The begin_game button will run "beginGame()" function when clicked.  The () is required at the end to show it is a 
 		function, but no parameters are displaying -->
-    <button id="begin_game" onclick="beginGame();">Reset Game</button>
-
+<!--     <button id="begin_game" onclick="beginGame();">Reset Game</button> -->
+     <button id="begin_game" onclick="beginGame();">Reset Game</button>
     <!-- All the action takes place in the gameboard, so I'm containing the gameboard in a div with the ID "gameboard" so that
 		you can always target any items within easily. -->
     <div id="gameboard">
       <!-- The game_info div allows game-specific information to easily be displayed -->
-      <div id="game_info"></div>
+      <div id="game_info"> 
+      </div>
+      <div id="ticket1_info"> 
+      </div>
+      <div id="ticket2_info"> 
+      </div>
       <!-- The game table is the actual board.  A table seems the most logical structure for the data, as tables have rows and columns
 			although you most certainly could use divs, or other HTML elements.  The top row (and tablehead - 'thead') is reserved for the 
 			buttons to drop the game pieces. -->
@@ -79,11 +84,11 @@
             //write the closing table row tag.
             document.writeln("</tr>");
           }
-        </script>
-      </table>
-      <!--       game_status is a place for the game to provide status updates.  -->
-      <div id="game_status"></div>
-    </div>
+        </script> 
+      </table> 
+<!--       game_status is a place for the game to provide status updates.  -->
+      <div id="game_status"></div> 
+    </div> 
     <script src="script.js"></script>
   </body>
 </html>
