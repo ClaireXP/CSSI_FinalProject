@@ -42,6 +42,7 @@ let dartY = 300;
 var hit = false;
 var tickets = 0;
 let pop;
+let button1;
 var bgImg;
 var time = 100;
 var x1 = 0;
@@ -72,6 +73,8 @@ function setup() {
   }
   
   x2 = height;
+  
+  btn(button1, 'Back', width/2, 10, backButton);
 }
 
 function draw() {
@@ -193,4 +196,14 @@ function keyPressed() {
   if (keyCode == DOWN_ARROW) {
     dartY += 20;
   }
+}
+
+function btn(button, words, x, y, func){
+  button = createButton(`${words}`);
+  button.position(x, y);
+  button.mousePressed(func);
+}
+
+function backButton() {
+  window.location.href = "./index.html";
 }

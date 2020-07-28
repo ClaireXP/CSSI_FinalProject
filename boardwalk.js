@@ -23,24 +23,24 @@ function setup() {
   // textFont(myFont);
   fill(255);
   textSize(30);
-  text('THE C\.\A\.\S\.\ ARCADE', width/2-130, 50);
+  text('THE C\.\A\.\S\.\ ARCADE', width/2-140, 50);
   
-  image(balloon, 0, 50, width/4, height-250)
-  btn(button1, 'Balloon', 40, height/2-25, balloonChoice);
+  image(balloon, 10, 65, width/5, width/5)
+  btn(button1, 'Balloon', 40, height/2-5, balloonChoice);
   
-  image(basketball, width/3+30, 50, width/4, height-250)
-  btn(button2, 'Basketball', 300, height/2-25, basketballChoice);
+  image(basketball, width/3+10, 65, width/5, width/5)
+  btn(button2, 'Basketball', 270, height/2-5, basketballChoice);
   
-  image(connect4, 450, 50, width/4, height-250)
-  btn(button3, 'Connect 4', 500, height/2-25, connect4Choice);
+  image(connect4, 465, 65, width/5, width/5)
+  btn(button3, 'Connect 4', 500, height/2-5, connect4Choice);
   
-  image(duckHunt, 0, 0, width/4, height-250)
+  image(duckHunt, 0, height-160, width/5, width/5)
   btn(button4, 'Duck Hunt', 40, height-25, duckHunt);
   
-  image(pingpong, width/3+30, 50, width/4, height-250)
-  btn(button5, 'Ping Pong', 300, height-25, pingpongChoice);
+  image(pingpong, width/3+40, height-160, width/5, width/5)
+  btn(button5, 'Ping Pong', 270, height-25, pingpongChoice);
   
-  image(skeeball, 450, height-190, width/4, height-250)
+  image(skeeball, 465, height-160, width/5, width/5)
   btn(button6, 'Skeeball', 500, height-25, skeeBallChoice);
 }
 
@@ -63,7 +63,7 @@ function connect4Choice() {
 }
 
 function skeeBallChoice() {
-  window.location.href = "./skeeBall.html";
+  window.location.href = "./skeeball.html";
 }
 
 function duckHuntChoice() {

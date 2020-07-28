@@ -26,6 +26,8 @@
 * circle
 * mouseJustPressed
 * height
+* width
+* createButton
 */
 
 let xPosition, yPosition
@@ -40,6 +42,8 @@ let speed
 let shot, radius
 let rimX, rimY
 let xBoard, yBoard 
+
+let button;
 
 
 function setup() {
@@ -87,7 +91,8 @@ function setup() {
   
   // Basketball radius
   radius = 20;
-
+  
+  // btn(button, "Back", 350, 650, backButton);
 }
 
 function draw() {
@@ -103,6 +108,7 @@ function draw() {
   text("Shots: " + shots, 100, 35)
   fill(100, 200, 0)
   text("Streak: " + streak, 500, 35)
+  textSize(17)
   text("https://editor.p5js.org/rjgilmour/sketches/uCw6P5waj", width-400, height - 50)
   
   noFill()
@@ -409,6 +415,16 @@ function mouseReleased() {
     aim = 0
   }
   
+}
+
+function btn(button, words, x, y, func){
+  button = createButton(`${words}`);
+  button.position(x, y);
+  button.mousePressed(func);
+}
+
+function backButton() {
+  window.location.href = "./index.html";
 }
 
 
