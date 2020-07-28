@@ -95,11 +95,15 @@ function draw() {
     balloons[i].display();
     balloons[i].float();
   }
+  
   dart();
   
-  // time = time - .25;
-  // fill(50);
-  // text('TIME REMAINING: ' + round(time), 270, 20);
+  time = time - .25;
+  fill(0);
+  text('TIME REMAINING: ' + round(time), 270, 20);
+  if (time < 0) {
+    time = 100;
+  }
   // if (time < 0) {
   //   text('GAME ENDED', width/2-50, height/2);
   //   time = 0;
@@ -158,11 +162,13 @@ function dart() {
     dartX = width-100;
   
   // collidePointEllipse(pointX, pointY, ellipseX, ellipseY, ellipseWidth, ellipseHeight )
-  // hit1 = collidePointEllipse(dartX, height - 100, this.x, this.y, 100, 150)
-  // if (hit1) {
-  //   text('TRUE', 50, 50);
-  // }
   
+  for(var i = 0; i < balloonTotal; i++) {
+    hit1 = collidePointEllipse(dartX, dartY, balloons[i].x, balloons[i].y, 100, 150)
+    if (hit1) {
+    text('TRUE', 50, 50);
+    }
+  }
 }
 
 function keyPressed() {
