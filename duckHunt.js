@@ -133,8 +133,6 @@ function drawWave(y, size){
 
 function bye(list, i){
   list = list.splice(i, 1);
-  
-  console.log(list);
 }
 
 function playAgain(){

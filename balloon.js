@@ -116,7 +116,7 @@ function draw() {
 class randomBalloons {
   constructor() {
     this.r = random(minBallSize, maxBallSize);
-    this.x = random(0, width-2*this.r);
+    this.x = random(0, width-5*this.r);
     this.y = random(height);
     this.color = random(360);
     this.velocityY = random(minSpeed, maxSpeed);
