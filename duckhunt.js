@@ -6,10 +6,11 @@ ellipse, collideCircleCircle, fill, textSize, text, ARROW, cursor, noCursor,
 createButton, height
 */
 
-let duckRight, duckLeft, target, waves, p, ducks, can, rows, shots, misses, btn, button;
+let duckRight, duckLeft, target, waves, p, ducks, can, rows, shots, misses, btn, button, sizing;
 let noBtn = true;
 let tickets = 0;
-let sizing;
+
+let prop = window.innerWidth - 20;
 
 function preload(){
   duckLeft = loadImage("https://cdn.glitch.com/575c96d4-ad40-4b02-a190-89164f072325%2FduckLeft.png?v=1595867578953");
@@ -19,8 +20,8 @@ function preload(){
 }
 
 function setup(){
-  can = createCanvas(600, 500);
-  sizing = width*height*4/30000;
+  can = createCanvas(prop, prop*5/6);
+  sizing = height/13;
   
   background(51);
   frameRate(60);
@@ -32,7 +33,7 @@ function setup(){
   }
   
   reset();
-  makeBtn(button, "Back", width/2, 475, backButton);
+  makeBtn(button, "Back", width/2, height-25, backButton);
 }
 
 function draw(){
@@ -44,7 +45,7 @@ function draw(){
       updatePix();
       btn = createButton('Play Again!');
       btn.mousePressed(playAgain);
-      btn.position(300-25, 250)
+      btn.position(width/2-25, height/2)
       noBtn = false;
     }
   }
@@ -79,9 +80,9 @@ function reset(){
   noCursor();
   misses = [];
   ducks = [];
-  addRow(125, 3, "left", 5, 30, 10);
-  addRow(200, 4, "right", 3.5, 40, 5);
-  addRow(300, 5, "left", 2, 50, 1);
+  addRow(height*1.25/5, 3, "left", 5, sizing*3/4, 10);
+  addRow(height*2/5, 4, "right", 3.5, sizing, 5);
+  addRow(height*3/5, 5, "left", 2, sizing*5/4, 1);
 }
 
 function addRow(y, num, direction, speed, scale, score){
@@ -143,7 +144,6 @@ class duck {
     this.y = y;
     this.w = width;
     this.pointing = direction;
-    this.tint = "0"
     this.score = amt;
     
     this.vel = speed;
