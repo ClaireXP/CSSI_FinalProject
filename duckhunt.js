@@ -11,6 +11,7 @@ let noBtn = true;
 let tickets = 0;
 
 let prop = window.innerWidth - 20;
+let y = window.innerHeight;
 
 function preload(){
   duckLeft = loadImage("https://cdn.glitch.com/575c96d4-ad40-4b02-a190-89164f072325%2FduckLeft.png?v=1595867578953");
@@ -20,6 +21,7 @@ function preload(){
 }
 
 function setup(){
+  if(prop*5/6 >= y) prop = 6/5*y - 20;
   can = createCanvas(prop, prop*5/6);
   sizing = height/13;
   
@@ -60,7 +62,7 @@ function mouseClicked(can){
   if(shots>0 && noBtn){
     let miss = true;
     for(var i=0; i<ducks.length; i++){
-      if(mouseY<=ducks[i].y+50 && mouseY>=ducks[i].y-50){
+      if(mouseY<=ducks[i].y+100 && mouseY>=ducks[i].y-100){
         let hit = collideCircleCircle(p.x, p.y, p.size, ducks[i].x+ducks[i].w/2, ducks[i].y+ducks[i].w/2, ducks[i].w*.5);
         if(hit){
           miss = false;
