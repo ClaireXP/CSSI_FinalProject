@@ -213,5 +213,5 @@ function btn(button, words, x, y, func){
 }
 
 function backButton() {
-  window.location.href = "./index.html";
+  window.location.href = "./index.html?tix=" +tickets;
 }

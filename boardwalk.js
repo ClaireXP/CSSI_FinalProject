@@ -1,9 +1,9 @@
 /* global
 loadImage, createCanvas, image, textFont, fill, text, width, height, background, createButton
-textSize
+textSize, getURLParams
 */
 
-let title, myFont, room, balloon, basketball, connect4, duckHunt, pingpong, skeeball, prop, marg;
+let title, myFont, room, balloon, basketball, connect4, duckHunt, pingpong, skeeball, prop, marg, tickets;
 let button1, button2, button3, button4, button5, button6;
 
 function preload() {
@@ -18,6 +18,7 @@ function preload() {
 }
 
 function setup() {
+  tickets = getURLParams().tix;
   let xCan = window.innerWidth;
   let yCan = window.innerHeight;
   (xCan<yCan)? prop = xCan-20 : prop = yCan*6/4-20;
@@ -37,8 +38,8 @@ function setup() {
   image(basketball, width/3+10, height/2-width/5-20, width/5, width/5)
   btn(button2, 'Basketball', marg+width*13/30, height/2-5, basketballChoice);
   
-  image(connect4, width-width/5-15, height/2-width/5-20, width/5, width/5)
-  btn(button3, 'Connect 4', xCan-marg-width/5.7, height/2-5, connect4Choice);
+  image(connect4, width-width/5-20, height/2-width/5-20, width/5, width/5)
+  btn(button3, 'Connect 4', xCan-marg-width/6, height/2-5, connect4Choice);
   
   image(duckHunt, 8, height-width/5-40, width/5, width/5)
   btn(button4, 'Duck Hunt', marg+width/15, height-25, duckHuntChoice);
@@ -46,7 +47,7 @@ function setup() {
   image(pingpong, width/3+40, height-width/5-40, width/5, width/5)
   btn(button5, 'Ping Pong', marg+width*13/30, height-25, pingpongChoice);
   
-  image(skeeball, width*465/600, height-width/5-40, width/5, width/5)
+  image(skeeball, width-width/5-20, height-width/5-40, width/5, width/5)
   btn(button6, 'Skeeball', xCan-marg-width/6, height-25, skeeBallChoice);
 }
 
@@ -57,29 +58,29 @@ function btn(button, words, x, y, func){
 }
 
 function balloonChoice() {
-  window.location.href = "./balloon.html";
+  window.location.href = "./balloon.html?tix=" +tickets;
 }
 
 function basketballChoice() {
-  window.location.href = "./basketball.html";
+  window.location.href = "./basketball.html?tix=" +tickets;
 }
 
 function connect4Choice() {
-  window.location.href = "./connect4.html";
+  window.location.href = "./connect4.html?tix=" +tickets;
 }
 
 function skeeBallChoice() {
-  window.location.href = "./skeeball.html";
+  window.location.href = "./skeeball.html?tix=" +tickets;
 }
 
 function duckHuntChoice() {
-  window.location.href = "./duckhunt.html";
+  window.location.href = "./duckhunt.html?tix=" +tickets;
 }
 
 function pingpongChoice() {
-  window.location.href = "./pingpong.html";
+  window.location.href = "./pingpong.html?tix=" +tickets;
 }
 
 function backButton() {
-  window.location.href = "./index.html";
+  window.location.href = "./index.html?tix=" +tickets;
 }

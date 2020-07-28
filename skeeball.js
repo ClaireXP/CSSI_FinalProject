@@ -26,7 +26,7 @@ function setup(){
   holes = [];
   addHoles();
   
-  makeBtn(btn, "Back", xCan/2-13, 18, backButton);
+  makeBtn(btn, "Back", window.innerWidth/2-20, 18, backButton);
 }
 
 function draw(){
