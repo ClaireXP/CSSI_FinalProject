@@ -46,8 +46,8 @@ let minSpeed = 1;
 let maxSpeed = 3;
 let balloonTotal = 3;
 let balloonImg, dartImg;
-let dartX = 200;
-let dartY = 300;
+let dartX = xCan/2;
+let dartY = yCan/2;
 var hit = false;
 var tickets = 0;
 let pop;
@@ -151,7 +151,7 @@ class randomBalloons {
   }
 
   display() {
-    image(balloonImg, this.x, this.y, 100, 150);
+    image(balloonImg, this.x, this.y, this.r, this.r*1.5);
     fill(this.color, 30, 100);
     // }
     // if (hit1) {
@@ -196,16 +196,16 @@ function dart() {
 
 function keyPressed() {
   if (keyCode == RIGHT_ARROW) {
-    dartX += 20;
+    dartX += width/20;
   }
   if (keyCode == LEFT_ARROW) {
-    dartX -= 20;
+    dartX -= width/30;
   }
   if (keyCode == UP_ARROW) {
-    dartY -= 20;
+    dartY -= height/20;
   }
   if (keyCode == DOWN_ARROW) {
-    dartY += 20;
+    dartY += height/20;
   }
 }
 

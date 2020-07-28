@@ -29,23 +29,23 @@ function setup() {
   textSize(30);
   text('THE C\.\A\.\S\.\ ARCADE', width/2-140, 50);
   
-  image(balloon, 10, height*65/400, width/5, width/5)
-  btn(button1, 'Balloon', width*27/600, height/2-5, balloonChoice);
+  image(balloon, 15, height*65/400, width/5, width/5)
+  btn(button1, 'Balloon', width/12, height/2-5, balloonChoice);
   
   image(basketball, width/3+10, height*65/400, width/5, width/5)
-  btn(button2, 'Basketball', width*13/30, height/2-height/, basketballChoice);
+  btn(button2, 'Basketball', width*13/30, height/2-5, basketballChoice);
   
   image(connect4, width*465/600, height*65/400, width/5, width/5)
-  btn(button3, 'Connect 4', width*5/6, height/2-5, connect4Choice);
+  btn(button3, 'Connect 4', width*6.87/8, height/2-5, connect4Choice);
   
-  image(duckHunt, 0, height-160, width/5, width/5)
-  btn(button4, 'Duck Hunt', width*27/600, height-25, duckHuntChoice);
+  image(duckHunt, 0, height-height*14/40, width/5, width/5)
+  btn(button4, 'Duck Hunt', width/12, height-25, duckHuntChoice);
   
-  image(pingpong, width/3+40, height-160, width/5, width/5)
+  image(pingpong, width/3+40, height-height*14/40, width/5, width/5)
   btn(button5, 'Ping Pong', width*13/30, height-25, pingpongChoice);
   
-  image(skeeball, width*465/600, height-160, width/5, width/5)
-  btn(button6, 'Skeeball', width*5/6, height-25, skeeBallChoice);
+  image(skeeball, width*465/600, height-height*14/40, width/5, width/5)
+  btn(button6, 'Skeeball', width*6.87/8, height-25, skeeBallChoice);
 }
 
 function btn(button, words, x, y, func){
