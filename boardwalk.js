@@ -1,10 +1,13 @@
-// /*
-// */
+var title;
 
-// function setup() {
+function preload() {
   
-// }
+}
 
-// function draw() {
+function setup() {
+  myFont = loadFont('assets/HighTide.otf');
+}
+
+function draw() {
   
-// //
+}

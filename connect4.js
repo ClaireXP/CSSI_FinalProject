@@ -1,6 +1,8 @@
 // const --> variable value won't be changed
 // let --> value can be changed
 
+// Tutorial Credit: youtube.com/watch?v=4Alop6P-jHE
+
 var game_active = false; // boolean used to prevent being able to drop peices once game is over
 var active_player = 0; // the # of current player - 1 or 2. 0 represents no active player
 var gameboard = []; // define the gameboard as an array
