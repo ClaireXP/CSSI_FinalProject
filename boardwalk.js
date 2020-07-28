@@ -3,7 +3,7 @@ loadImage, createCanvas, image, textFont, fill, text, width, height, background,
 textSize
 */
 
-let title, myFont, room, balloon, basketball, connect4, duckHunt, pingpong, skeeball, prop;
+let title, myFont, room, balloon, basketball, connect4, duckHunt, pingpong, skeeball, prop, marg;
 let button1, button2, button3, button4, button5, button6;
 
 function preload() {
@@ -22,6 +22,8 @@ function setup() {
   let yCan = window.innerHeight;
   (xCan<yCan)? prop = xCan-20 : prop = yCan*6/4-20;
   
+  marg = (xCan-prop)/2;
+  
   createCanvas(prop, prop*4/6);
   image(room, 0, 0, width, height+height*5/30)
   // textFont(myFont);
@@ -29,23 +31,23 @@ function setup() {
   textSize(30);
   text('THE C\.\A\.\S\.\ ARCADE', width/2-140, 50);
   
-  image(balloon, 15, height*65/400, width/5, width/5)
-  btn(button1, 'Balloon', width/10, height/2-5, balloonChoice);
+  image(balloon, 15, height/2-width/5-20, width/5, width/5)
+  btn(button1, 'Balloon', marg+width/12, height/2-5, balloonChoice);
   
-  image(basketball, width/3+10, height*65/400, width/5, width/5)
-  btn(button2, 'Basketball', width*13/30, height/2-5, basketballChoice);
+  image(basketball, width/3+10, height/2-width/5-20, width/5, width/5)
+  btn(button2, 'Basketball', marg+width*13/30, height/2-5, basketballChoice);
   
-  image(connect4, width*465/600, height*65/400, width/5, width/5)
-  btn(button3, 'Connect 4', width*6.87/8, height/2-5, connect4Choice);
+  image(connect4, width-width/5-15, height/2-width/5-20, width/5, width/5)
+  btn(button3, 'Connect 4', xCan-marg-width/5.7, height/2-5, connect4Choice);
   
-  image(duckHunt, 0, height-height*14/40, width/5, width/5)
-  btn(button4, 'Duck Hunt', width/12, height-25, duckHuntChoice);
+  image(duckHunt, 8, height-width/5-40, width/5, width/5)
+  btn(button4, 'Duck Hunt', marg+width/15, height-25, duckHuntChoice);
   
-  image(pingpong, width/3+40, height-height*14/40, width/5, width/5)
-  btn(button5, 'Ping Pong', width*13/30, height-25, pingpongChoice);
+  image(pingpong, width/3+40, height-width/5-40, width/5, width/5)
+  btn(button5, 'Ping Pong', marg+width*13/30, height-25, pingpongChoice);
   
-  image(skeeball, width*465/600, height-height*14/40, width/5, width/5)
-  btn(button6, 'Skeeball', width*6.87/8, height-25, skeeBallChoice);
+  image(skeeball, width*465/600, height-width/5-40, width/5, width/5)
+  btn(button6, 'Skeeball', xCan-marg-width/6, height-25, skeeBallChoice);
 }
 
 function btn(button, words, x, y, func){
