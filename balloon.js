@@ -31,6 +31,7 @@
  *    text, textSize
  *    createButton
  *    round
+ *    keyIsPressed
  */
 
 let xCan = window.innerWidth - 20;
@@ -38,9 +39,9 @@ let yCan = window.innerHeight - 20;
 
 let balloons;
 let minBallSize;
-(xCan>yCan)? minBallSize = xCan*12/400 : minBallSize = yCan*12/400;
+(xCan>yCan)? minBallSize = xCan/12 : minBallSize = yCan/12;
 let maxBallSize;
-(xCan>yCan)? maxBallSize = xCan*30/400 : maxBallSize = yCan*30/400;
+(xCan>yCan)? maxBallSize = xCan/6 : maxBallSize = yCan/6;
 
 let minSpeed = 1;
 let maxSpeed = 3;
@@ -87,6 +88,20 @@ function setup() {
 }
 
 function draw() {
+  if(keyIsPressed){
+    if (keyCode == RIGHT_ARROW) {
+      dartX += width/100;
+    }
+    if (keyCode == LEFT_ARROW) {
+      dartX -= width/100;
+    }
+    if (keyCode == UP_ARROW) {
+      dartY -= height/100;
+    }
+    if (keyCode == DOWN_ARROW) {
+      dartY += height/100;
+    }
+  }
   
   image(bgImg, 0, x1, width, height);
   image(bgImg, 0, x2, width, height);
@@ -113,7 +128,6 @@ function draw() {
   }
   
   dart();
-  
   
   time = time - .25;
   fill(0);
@@ -162,7 +176,6 @@ class randomBalloons {
     // ellipse(this.x, this.y, this.r*2);
     // rect(x, y, width, height)
   }
-  
 }
 
 function bye(list, i){
@@ -175,14 +188,13 @@ function dart() {
   if (dartY < 0) 
     dartY = height-100;
   if (dartY > height)
-    dartY = height-100;
+    dartY = 0;
   if (dartX < 0)
     dartX = width-100;
   if (dartX > width)
-    dartX = width-100;
+    dartX = 0;
   
   // collidePointEllipse(pointX, pointY, ellipseX, ellipseY, ellipseWidth, ellipseHeight )
-  
   for(var i = 0; i < balloonTotal; i++) {
     var hit1 = collidePointEllipse(dartX, dartY, balloons[i].x, balloons[i].y, 100, 150)
     if (hit1) {
@@ -191,21 +203,6 @@ function dart() {
       balloons.push(new randomBalloons());
       break;
     }
-  }
-}
-
-function keyPressed() {
-  if (keyCode == RIGHT_ARROW) {
-    dartX += width/20;
-  }
-  if (keyCode == LEFT_ARROW) {
-    dartX -= width/30;
-  }
-  if (keyCode == UP_ARROW) {
-    dartY -= height/20;
-  }
-  if (keyCode == DOWN_ARROW) {
-    dartY += height/20;
   }
 }
 

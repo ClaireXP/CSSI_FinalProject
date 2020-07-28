@@ -50,8 +50,8 @@ function setup() {
   createCanvas(650, 500); 
   
   // Starting position of the ball
-  xPosition = 50;
-  yPosition = 325;
+  xPosition = width*5/65;
+  yPosition = height*325/500;
   
   mouseJustPressed = 0;
   shotMade = 0;
@@ -73,8 +73,8 @@ function setup() {
   y = yPosition;
   
   // Hoop location
-  xHoop = 500
-  yHoop = 150
+  xHoop = width*50/65
+  yHoop = height*15/50
   
    
   direction=1;
