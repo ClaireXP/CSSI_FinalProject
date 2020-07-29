@@ -1,3 +1,7 @@
+/* global
+  getURLParams
+*/
+
 // const --> variable value won't be changed
 // let --> value can be changed
 
@@ -233,6 +237,8 @@ function endGame(winningPlayer) {
 }
 
 function backButton() {
-  if(getURLParams.tix.typeOf=="number") tickets = Number(getURLParams().tix);
+  let params = getURLParams();
+  if(params.tix.typeOf=="number") tickets = Number(params.tix);
+  console.log(tickets)
   window.location.href = "./index.html?tix=" +tickets;
 }
