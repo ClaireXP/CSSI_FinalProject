@@ -29,13 +29,13 @@ function setup(){
   frameRate(60);
   
   p = {
-    x: width/2-5,
+    x: width/2-10,
     y: height*4/5,
     size: sizing,
   }
   
   reset();
-  makeBtn(button, "Back", window.innerWidth/2, height-25, backButton);
+  makeBtn(button, "Back", window.innerWidth/2+5, height-25, backButton);
 }
 
 function draw(){
