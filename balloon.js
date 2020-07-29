@@ -197,7 +197,7 @@ function dart() {
   
   // collidePointEllipse(pointX, pointY, ellipseX, ellipseY, ellipseWidth, ellipseHeight )
   for(var i = 0; i < balloonTotal; i++) {
-    var hit1 = collidePointEllipse(dartX, dartY, balloons[i].x, balloons[i].y, 100, 150)
+    var hit1 = collidePointEllipse(dartX, dartY, balloons[i].x, balloons[i].y, balloons[i].r, balloons[i].r*1.5)
     if (hit1) {
       tickets++;
       bye(balloons, i);

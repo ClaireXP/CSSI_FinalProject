@@ -35,7 +35,7 @@ function setup(){
   }
   
   reset();
-  makeBtn(button, "Back", width/2, height-25, backButton);
+  makeBtn(button, "Back", window.innerWidth/2, height-25, backButton);
 }
 
 function draw(){
@@ -47,7 +47,7 @@ function draw(){
       updatePix();
       btn = createButton('Play Again!');
       btn.mousePressed(playAgain);
-      btn.position(width/2-25, height/2)
+      btn.position(window.innerWidth/2-25, height/2)
       noBtn = false;
     }
   }
