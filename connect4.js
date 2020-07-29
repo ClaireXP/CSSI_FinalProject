@@ -233,7 +233,6 @@ function endGame(winningPlayer) {
 }
 
 function backButton() {
-  // let hi = getURLParams()
-  // if(getURLParams()!=null && getURLParams().tix!="undefined") tickets += getURLParams().tix;
+  // if(getURLParams().tix!="undefined") tickets += Number(getURLParams().tix);
   window.location.href = "./index.html";
 }

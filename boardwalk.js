@@ -20,7 +20,7 @@ function preload() {
 
 function setup() {
   let params = getURLParams();
-  if(params!=null && params.tix!="undefined") tickets = getURLParams().tix;
+  if(params!=null && params.tix!="NaN") tickets = Number(getURLParams().tix);
   
   let xCan = window.innerWidth;
   let yCan = window.innerHeight;
@@ -35,23 +35,26 @@ function setup() {
   textSize(30);
   text('THE C\.\A\.\S\.\ ARCADE', width/2-140, 50);
   
+  textSize(15);
+  text(`Tickets: ${tickets}`, 12, 20);
+  
   image(balloon, 15, height/2-width/5-20, width/5, width/5)
   btn(button1, 'Balloon', marg+width/12, height/2-5, balloonChoice);
   
-  image(basketball, width/3+10, height/2-width/5-20, width/5, width/5)
-  btn(button2, 'Basketball', marg+width*13/30, height/2-5, basketballChoice);
+  image(basketball, width/2.6, height/2-width/5-20, width/5, width/5)
+  btn(button2, 'Basketball', marg+width/2.1, height/2-5, basketballChoice);
   
-  image(connect4, width-width/5-20, height/2-width/5-20, width/5, width/5)
-  btn(button3, 'Connect 4', xCan-marg-width/6, height/2-5, connect4Choice);
+  image(connect4, width-width/4.5, height/2-width/5-20, width/5, width/5)
+  btn(button3, 'Connect 4', window.innerWidth-marg-width/6.5, height/2-5, connect4Choice);
   
   image(duckHunt, 8, height-width/5-40, width/5, width/5)
   btn(button4, 'Duck Hunt', marg+width/15, height-25, duckHuntChoice);
   
-  image(pingpong, width/3+40, height-width/5-40, width/5, width/5)
-  btn(button5, 'Ping Pong', marg+width*13/30, height-25, pingpongChoice);
+  image(pingpong, width/2.5, height-width/5-40, width/5, width/5)
+  btn(button5, 'Ping Pong', marg+width/2.1, height-25, pingpongChoice);
   
-  image(skeeball, width-width/5-20, height-width/5-40, width/5, width/5)
-  btn(button6, 'Skeeball', xCan-marg-width/6, height-25, skeeBallChoice);
+  image(skeeball, width-width/4.5, height-width/5-40, width/5, width/5)
+  btn(button6, 'Skeeball', window.innerWidth-marg-width/6.75, height-25, skeeBallChoice);
 }
 
 function btn(button, words, x, y, func){
