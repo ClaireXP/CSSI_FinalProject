@@ -24,7 +24,7 @@ function setup() {
   
   let xCan = window.innerWidth;
   let yCan = window.innerHeight;
-  (xCan<yCan)? prop = xCan-20 : prop = yCan*6/4-20;
+  (xCan<yCan*6/4)? prop = xCan-20 : prop = yCan*6/4-20;
   
   marg = (xCan-prop)/2;
   
@@ -36,7 +36,7 @@ function setup() {
   text('THE C\.\A\.\S\.\ ARCADE', width/2-140, 50);
   
   textSize(15);
-  text(`Tickets: ${tickets}`, 12, 20);
+  // text(`Tickets: ${tickets}`, 12, 20);
   
   image(balloon, 15, height/2-width/5-20, width/5, width/5)
   btn(button1, 'Balloon', marg+width/12, height/2-5, balloonChoice);

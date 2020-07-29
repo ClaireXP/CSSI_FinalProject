@@ -4,7 +4,7 @@
 createCanvas, background, beginShape, endShape, vertex, rect, fill, strokeWeight, 
 image, loadImage, ellipse, mouseX, mouseY, mouseIsPressed, collidePointCircle, 
 quad, millis, frameRate, arc, PI, OPEN, stroke, noStroke, collidePointEllipse, text,
-textSize, createButton, getURLParams,
+textSize, createButton, getURLParams, width
 */
 
 let yCan = window.innerHeight - 20;
@@ -32,7 +32,7 @@ function setup(){
 function draw(){
   background(51);
   buildMachine();
-  image(arrow, xCan/2.8, yCan/2);
+  image(arrow, width/2.5, yCan/2);
   
   for(const h of holes) h.drawHole();
   
