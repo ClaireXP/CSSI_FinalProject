@@ -233,6 +233,6 @@ function endGame(winningPlayer) {
 }
 
 function backButton() {
-  // if(getURLParams().tix!="undefined") tickets += Number(getURLParams().tix);
-  window.location.href = "./index.html";
+  if(getURLParams.tix.typeOf=="number") tickets = Number(getURLParams().tix);
+  window.location.href = "./index.html?tix=" +tickets;
 }

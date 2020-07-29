@@ -20,7 +20,7 @@ function preload() {
 
 function setup() {
   let params = getURLParams();
-  if(params!=null && params.tix!="NaN") tickets = Number(getURLParams().tix);
+  if(params.tix!=null && params.tix.typeOf=="number") tickets = Number(getURLParams().tix);
   
   let xCan = window.innerWidth;
   let yCan = window.innerHeight;
