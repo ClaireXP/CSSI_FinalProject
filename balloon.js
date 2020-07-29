@@ -214,6 +214,6 @@ function btn(button, words, x, y, func){
 }
 
 function backButton() {
-  if(getURLParams.tix.typeOf=="number") tickets = Number(getURLParams().tix);
+  if(getURLParams().tix!="undefined") tickets += Number(getURLParams().tix);
   window.location.href = "./index.html?tix=" +tickets;
 }

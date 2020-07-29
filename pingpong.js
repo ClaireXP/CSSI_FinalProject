@@ -69,7 +69,7 @@ function setup(){
   frameRate(90);
   refresh();
   
-  makeBtn(btn, "Back", xCan/2, yCan-23, backButton);
+  makeBtn(btn, "Back", 22, 20, backButton);
 }
 
 function draw(){
@@ -120,7 +120,7 @@ function refresh(){
 }
 
 function mouseMoved(can){
-  if(mouseY>p.maxY && game) noCursor();
+  if(game && mouseY>p.maxY) noCursor();
   else cursor(ARROW);
   
   updateP()
@@ -348,6 +348,6 @@ function makeBtn(button, words, x, y, func){
 }
 
 function backButton() {
-  if(getURLParams().tix!="undefined") tickets += getURLParams().tix;
+  if(getURLParams().tix!="undefined") tickets += Number(getURLParams().tix);
   window.location.href = "./index.html?tix=" +tickets;
 }
