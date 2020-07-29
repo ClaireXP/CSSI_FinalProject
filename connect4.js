@@ -237,7 +237,7 @@ function endGame(winningPlayer) {
 }
 
 function backButton() {
-  let params = getURLParams();
+  // let params = getURLParams();
   // if(getURLParams().tix!="undefined") tickets += Number(getURLParams().tix);
   console.log(tickets)
   window.location.href = "./index.html?tix=" +tickets;
